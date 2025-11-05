@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoaltyCoder - About Me</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f3f3f3;
+            color: #333;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(139, 233, 253, 0.3), rgba(255, 182, 193, 0.3), rgba(255, 228, 181, 0.3));
+            overflow: hidden;
+        }
+
+        .profile-image {
+            width: 380px;
+            height: auto;
+            border-radius: 50%;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .toggle-container {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 70px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #333;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #0078ff;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(36px);
+        }
+
+        .mode-text {
+            font-weight: 700;
+        }
+
+        /* --- Content Sections --- */
+        section {
+            padding: 100px 40px;
+            background: #fff;
+            margin-bottom: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            font-size: 36px;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #000;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #444;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        ul {
+            list-style: none;
+            max-width: 700px;
+            margin: 0 auto;
+            padding-left: 0;
+        }
+
+        li {
+            padding: 12px 0;
+            font-size: 18px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: #000;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 30px;
+            margin: 6px;
+            font-size: 15px;
+        }
+
+        .skills {
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 0;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .profile-image {
+                width: 240px;
+            }
+            h2 {
+                font-size: 28px;
+            }
+            p, li {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <img src="assets/designer.png" alt="Profile" class="profile-image" id="profileImage">
+        <div class="toggle-container">
+            <span>Designer</span>
+            <label class="switch">
+                <input type="checkbox" id="modeSwitch">
+                <span class="slider"></span>
+            </label>
+            <span>Coder</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                I'm Furkan Tümay — a passionate Mobile Application Developer and UI/UX Designer.  
+                I design and develop modern, high-performance mobile apps using native (SwiftUI, Kotlin) and multiplatform (Flutter) technologies.  
+                My focus is on clean architecture, smooth animations, and user-first design.
+            </p>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills">
+                <span class="skill-tag">SwiftUI</span>
+                <span class="skill-tag">Kotlin</span>
+                <span class="skill-tag">Jetpack Compose</span>
+                <span class="skill-tag">Firebase</span>
+                <span class="skill-tag">Flutter</span>
+                <span class="skill-tag">Figma</span>
+                <span class="skill-tag">UI/UX Design</span>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+            <ul>
+                <li><strong>Mobile Developer</strong> – Developed 10+ published mobile apps for iOS & Android.</li>
+                <li><strong>UI/UX Designer</strong> – Designed interactive prototypes and visual identities.</li>
+                <li><strong>Freelancer</strong> – Delivered complete app solutions from concept to store deployment.</li>
+            </ul>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <p>Bachelor’s Degree in Computer Engineering — Istanbul Kültür University</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:info@foaltycoder.com">info@foaltycoder.com</a></p>
+        </section>
+
+        <footer>
+            © 2025 FoaltyCoder — Designed & Developed by Furkan Tümay
+        </footer>
+    </div>
+
+    <script>
+        const modeSwitch = document.getElementById("modeSwitch");
+        const profileImage = document.getElementById("profileImage");
+
+        modeSwitch.addEventListener("change", () => {
+            if (modeSwitch.checked) {
+                profileImage.style.opacity = 0;
+                setTimeout(() => {
+                    profileImage.src = "assets/coder.png";
+                    profileImage.style.opacity = 1;
+                }, 400);
+            } else {
+                profileImage.style.opacity = 0;
+                setTimeout(() => {
+                    profileImage.src = "assets/designer.png";
+                    profileImage.style.opacity = 1;
+                }, 400);
+            }
+        });
+    </script>
+</body>
+</html>
