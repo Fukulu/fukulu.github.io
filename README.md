@@ -1,2 +1,70 @@
-# fukulu.github.io
-FoaltyCoder Website
+# 🌟 FoaltyCoder Portfolio
+
+Welcome to the official portfolio website of **FoaltyCoder** — a mobile app developer who designs and builds modern, high-performance applications using **SwiftUI**, **Kotlin**, and **Flutter**.
+
+This website showcases my work, design projects, and technical experience across both **native** and **multiplatform** environments.
+
+---
+
+## 🚀 About Me
+
+I'm **Furkan Tümay**, a passionate **Mobile App Developer** with experience delivering production-grade apps for both **iOS** and **Android** platforms.  
+My focus is on clean architecture, UI/UX design, and cross-platform consistency.
+
+- 🎯 Native Development with **SwiftUI** and **Kotlin**
+- 🌀 Multiplatform development using **Flutter**
+- 🎨 UI/UX prototyping on **Figma**
+- 📱 Over **10 published apps** on App Store & Google Play
+
+---
+
+## 💼 Pages Included
+
+| Page | Description |
+|------|--------------|
+| `index.html` | Main portfolio landing page — overview and intro |
+| `projects.html` | Collection of mobile apps and design projects |
+| `designs.html` | UI/UX showcases and Figma concepts |
+| `about.html` | Personal information, career background & profile |
+| `support.html` | Contact form for inquiries or technical support |
+| `privacy.html` | Privacy policy for all published applications |
+| `terms.html` | Terms of Use / End User License Agreement |
+
+---
+
+## 🧩 Technologies Used
+
+- **HTML5**, **CSS3**, and **JavaScript**
+- Responsive design with modern layout practices (Flexbox / Grid)
+- Lightweight animations and transitions
+- Static form handling with [StaticForms.dev](https://www.staticforms.dev)
+- Optional reCAPTCHA integration for secure contact forms
+
+---
+
+## 🖼️ Preview
+
+<img src="assets/FoaltyLogoPNG.png" width="150" alt="FoaltyCoder Logo" />
+<br>
+
+Visit the live portfolio at:  
+👉 [**www.foaltycoder.com**](https://www.foaltycoder.com)
+
+---
+
+## 📫 Contact
+
+If you’d like to collaborate, discuss a project, or get in touch:
+
+- ✉️ **foaltycoder@icloud.com**
+- 🌐 [LinkedIn Profile (optional)](https://linkedin.com)  
+- 💡 Open for freelance / collaboration opportunities.
+
+---
+
+## ⚖️ Legal
+
+- [Privacy Policy](privacy.html)  
+- [Terms of Use](terms.html)
+
+© 2025 **FoaltyCoder** — All rights reserved.
