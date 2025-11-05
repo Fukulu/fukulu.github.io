@@ -200,6 +200,29 @@
             border-radius: 20px;
         }
 
+        .footer-links {
+            text-align: center;
+            padding: 30px 0 100px; /* altta biraz boşluk bırakır */
+            font-size: 14px;
+            color: #444;
+        }
+        
+        .footer-links a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+        
+        .footer-links .divider {
+            margin: 0 15px;
+            color: #666;
+        }
+
         .decorative-line {
             position: absolute;
             top: 100px;
@@ -399,6 +422,13 @@
                 <span class="skill-item">ONLINE TUTOR</span>
             </div>
         </div>
+
+        <footer class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <span class="divider">|</span>
+            <a href="terms.html">Terms of Use</a>
+        </footer>
+        
     </div>
 </body>
 </html>
