@@ -57,7 +57,7 @@ Visit the live portfolio at:
 If you’d like to collaborate, discuss a project, or get in touch:
 
 - ✉️ **foaltycoder@icloud.com**
-- 🌐 [LinkedIn Profile (optional)](https://linkedin.com)  
+- 🌐 [LinkedIn Profile](https://linkedin.com/in/furkan-t%C3%BCmay-58b366254)  
 - 💡 Open for freelance / collaboration opportunities.
 
 ---
