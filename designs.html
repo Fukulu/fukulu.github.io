@@ -290,7 +290,7 @@
         <div class="designs-container">
             <!-- Design Project 1 -->
             <div class="design-project">
-                <h2 class="project-title">FinanceTracker Pro UI</h2>
+                <h2 class="project-title">Marshall Headphones - Concept Mobile App</h2>
                 <div class="carousel-container">
                     <div class="carousel-wrapper" id="carousel1">
                         <div class="design-slide">
@@ -300,7 +300,7 @@
                             <img src="assets/marshall/PAGE-II.jpg" alt="Design 2" class="design-image">
                         </div>
                         <div class="design-slide">
-                            <img src="assets/marshall/PAGE-III.jpg" alt="Design 3" class="design-image">
+                            <img src="assets/marshall/PAGE-III.png" alt="Design 3" class="design-image">
                         </div>
                     </div>
                     <div class="carousel-dots" id="dots1"></div>
@@ -457,43 +457,45 @@
     <script>
         // Initialize carousels
         const carousels = [
-            { id: 'carousel1', dots: 'dots1', count: 5 },
-            { id: 'carousel2', dots: 'dots2', count: 4 },
-            { id: 'carousel3', dots: 'dots3', count: 5 },
-            { id: 'carousel4', dots: 'dots4', count: 4 },
-            { id: 'carousel5', dots: 'dots5', count: 5 },
-            { id: 'carousel6', dots: 'dots6', count: 4 }
+          { id: 'carousel1', dots: 'dots1' },
+          { id: 'carousel2', dots: 'dots2' },
+          { id: 'carousel3', dots: 'dots3' },
+          { id: 'carousel4', dots: 'dots4' },
+          { id: 'carousel5', dots: 'dots5' },
+          { id: 'carousel6', dots: 'dots6' }
         ];
-
+        
         carousels.forEach(carousel => {
             const wrapper = document.getElementById(carousel.id);
+            const slides = wrapper.querySelectorAll('.design-slide');
+            const slideCount = slides.length; // ✅ otomatik tespit et
             const dotsContainer = document.getElementById(carousel.dots);
             let currentIndex = 0;
             let startX = 0;
             let isDragging = false;
-
-            // Create dots
-            for (let i = 0; i < carousel.count; i++) {
+        
+            // ✅ Otomatik dot oluştur
+            for (let i = 0; i < slideCount; i++) {
                 const dot = document.createElement('div');
                 dot.className = 'dot' + (i === 0 ? ' active' : '');
                 dot.addEventListener('click', () => goToSlide(i));
                 dotsContainer.appendChild(dot);
             }
-
+        
             function goToSlide(index) {
                 currentIndex = index;
                 wrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
                 updateDots();
             }
-
+        
             function updateDots() {
                 const dots = dotsContainer.querySelectorAll('.dot');
                 dots.forEach((dot, index) => {
                     dot.classList.toggle('active', index === currentIndex);
                 });
             }
-
-            // Touch/Mouse drag functionality
+        
+            // ✅ Dokunma / sürükleme desteği aynı kalıyor
             wrapper.addEventListener('mousedown', startDrag);
             wrapper.addEventListener('touchstart', startDrag);
             wrapper.addEventListener('mousemove', drag);
@@ -501,26 +503,25 @@
             wrapper.addEventListener('mouseup', endDrag);
             wrapper.addEventListener('touchend', endDrag);
             wrapper.addEventListener('mouseleave', endDrag);
-
+        
             function startDrag(e) {
                 isDragging = true;
                 startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
             }
-
+        
             function drag(e) {
                 if (!isDragging) return;
                 e.preventDefault();
             }
-
+        
             function endDrag(e) {
                 if (!isDragging) return;
                 isDragging = false;
-                
                 const endX = e.type.includes('mouse') ? e.pageX : e.changedTouches[0].pageX;
                 const diff = startX - endX;
-
+        
                 if (Math.abs(diff) > 50) {
-                    if (diff > 0 && currentIndex < carousel.count - 1) {
+                    if (diff > 0 && currentIndex < slideCount - 1) {
                         goToSlide(currentIndex + 1);
                     } else if (diff < 0 && currentIndex > 0) {
                         goToSlide(currentIndex - 1);
@@ -528,6 +529,7 @@
                 }
             }
         });
+
     </script>
 </body>
 </html>
