@@ -19,7 +19,6 @@
       margin: 0 auto;
       min-height: 100vh;
       position: relative;
-      padding-top: 160px; /* ✅ Navbar için boşluk eklendi */
     }
 
     .logo {
@@ -83,23 +82,28 @@
         opacity: 0.7;
     }
 
+    .main-content {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 180px 80px 120px 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 60px;
+        min-height: calc(100vh - 100px);
+    }
+
     .left-section {
       flex: 1;
-      max-width: 50%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      max-width: 600px;
     }
     
     .right-section {
       flex: 1;
-      max-width: 50%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      position: relative;
-      z-index: 1;
     }
 
     .greeting {
@@ -113,7 +117,7 @@
       font-size: 72px;
       font-weight: 900;
       color: #000;
-      margin-bottom: 30px;
+      display: block;
     }
 
     .title-line {
@@ -121,6 +125,7 @@
       align-items: center;
       gap: 20px;
       margin-bottom: 40px;
+      margin-top: 30px;
     }
 
     .line {
@@ -133,6 +138,10 @@
       font-size: 28px;
       font-weight: 400;
       color: #333;
+    }
+
+    .diamond {
+      font-size: 24px;
     }
 
     .description {
@@ -162,11 +171,12 @@
 
     .profile-image {
       width: 100%;
-      max-width: 800px;
-      height: 60vh;
+      max-width: 600px;
+      height: auto;
       object-fit: cover;
       border-radius: 30px;
       transition: all 0.5s ease;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
     }
 
     .toggle-container {
@@ -177,7 +187,7 @@
       padding: 15px 30px;
       border-radius: 50px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      margin-top: 20px;
+      margin-top: 30px;
     }
 
     .toggle-label {
@@ -216,6 +226,30 @@
       transform: translateX(40px);
     }
 
+    footer {
+      text-align: center;
+      padding: 30px 0 100px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    footer a {
+      text-decoration: none;
+      color: #000;
+      font-weight: 500;
+      transition: opacity 0.3s;
+      margin: 0 15px;
+    }
+
+    footer a:hover { 
+      opacity: 0.7; 
+    }
+
+    .divider {
+      color: #999;
+      margin: 0 10px;
+    }
+
     .skill-bar {
       position: fixed;
       bottom: 0;
@@ -225,6 +259,7 @@
       color: #fff;
       padding: 30px 0;
       overflow: hidden;
+      z-index: 50;
     }
 
     .skill-scroll {
@@ -252,36 +287,45 @@
       font-size: 16px;
     }
 
-    footer {
-      text-align: center;
-      padding: 30px 0 100px;
-      font-size: 14px;
-      color: #444;
-    }
-
-    footer a {
-      text-decoration: none;
-      color: #000;
-      font-weight: 500;
-      transition: opacity 0.3s;
-    }
-
-    footer a:hover { opacity: 0.7; }
-
     @media (max-width: 1024px) {
       .main-content {
-        max-width: 1440px;
-        margin: 0 auto;
-        padding: 80px 80px 120px 80px; /* üst padding 60'tan 80'e çıkarıldı */
-        display: flex;
-        align-items: center; /* ✅ yatayda ortalar */
-        justify-content: space-between; /* ✅ soldaki ve sağdaki eşit dağılır */
-        gap: 60px;
+        flex-direction: column;
+        padding: 140px 40px 120px 40px;
       }
 
-      .logo { font-size: 24px; }
-      .nav { flex-direction: column; align-items: flex-end; gap: 15px; }
-      .name { font-size: 48px; }
+      .left-section {
+        max-width: 100%;
+      }
+
+      .right-section {
+        width: 100%;
+      }
+
+      .logo { 
+        font-size: 24px; 
+      }
+
+      .nav { 
+        flex-direction: column; 
+        align-items: flex-end; 
+        gap: 15px; 
+      }
+
+      .nav-item {
+        font-size: 18px;
+      }
+
+      .name { 
+        font-size: 48px; 
+      }
+
+      .greeting {
+        font-size: 36px;
+      }
+
+      .title {
+        font-size: 22px;
+      }
     }
   </style>
 </head>
@@ -293,7 +337,7 @@
       <a href="projects.html" class="nav-item">Projects</a>
       <a href="designs.html" class="nav-item">Designs</a>
       <a href="about.html" class="nav-item">About Me</a>
-      <a href="support.html" class="nav-item">Support</a>
+      <a href="contact.html" class="nav-item">Support</a>
     </nav>
 
     <div class="main-content">
@@ -329,6 +373,12 @@
       </div>
     </div>
 
+    <footer>
+      <a href="privacy.html">Privacy Policy</a>
+      <span class="divider">|</span>
+      <a href="terms.html">Terms of Use</a>
+    </footer>
+
     <div class="skill-bar">
       <div class="skill-scroll">
         <span class="skill-item">MOBILE APPLICATION</span>
@@ -348,12 +398,6 @@
         <span class="skill-item">ONLINE TUTOR</span>
       </div>
     </div>
-
-    <footer>
-      <a href="privacy.html">Privacy Policy</a>
-      <span class="divider">|</span>
-      <a href="terms.html">Terms of Use</a>
-    </footer>
   </div>
 
   <script>
@@ -365,6 +409,7 @@
       profileImage.src = this.classList.contains('active') ? 'assets/coder.png' : 'assets/designer.png';
     });
 
+    // Otomatik değişim - her 5 saniyede
     setInterval(() => {
       toggleSwitch.classList.toggle('active');
       profileImage.src = toggleSwitch.classList.contains('active') ? 'assets/coder.png' : 'assets/designer.png';
