@@ -168,15 +168,15 @@
       position: relative;
     }
 
-    /* ✅ Switch ve resim stilleri eklendi */
     .profile-image {
       width: 100%;
-      max-width: 500px;
-      height: auto;
-      border-radius: 20px;
+      max-width: 800px;
+      height: 60vh; /* 🔥 ekran yüksekliğinin %60’ı */
       object-fit: cover;
+      border-radius: 30px;
       transition: all 0.5s ease;
     }
+
 
     .toggle-container {
       display: flex;
@@ -341,10 +341,10 @@
       </div>
 
       <div class="right-section">
-        <img id="profileImage" src="assets/coder.png" alt="Profile" class="profile-image">
+        <img id="profileImage" src="assets/designer.png" alt="Profile" class="profile-image">
         <div class="toggle-container">
           <span class="toggle-label">Designer</span>
-          <div class="toggle-switch active" id="toggleSwitch">
+          <div class="toggle-switch" id="toggleSwitch">
             <div class="toggle-slider"></div>
           </div>
           <span class="toggle-label">Developer</span>
@@ -401,7 +401,7 @@
     } else {
       profileImage.src = 'assets/designer.png';
     }
-  }, 2000);
+  }, 5000);
 </script>
 </body>
 </html>
