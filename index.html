@@ -5,11 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FoaltyCoder - Mobile Application Developer</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -23,36 +19,32 @@
       margin: 0 auto;
       min-height: 100vh;
       position: relative;
+      padding-top: 160px; /* ✅ Navbar için boşluk eklendi */
     }
 
-    /* ✅ Logo artık navbar hizasında */
-    .navbar {
-      position: absolute;
+    /* ✅ Navbar (support sayfası stiliyle uyumlu) */
+    .logo {
+      position: fixed;
       top: 40px;
       left: 40px;
-      right: 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 10;
-    }
-
-    .logo {
       font-size: 32px;
       font-weight: 700;
       color: #000;
       letter-spacing: 1px;
       text-decoration: none;
+      z-index: 100;
       transition: opacity 0.3s;
     }
 
-    .logo:hover {
-      opacity: 0.7;
-    }
+    .logo:hover { opacity: 0.7; }
 
     .nav {
+      position: fixed;
+      top: 50px;
+      right: 40px;
       display: flex;
       gap: 45px;
+      z-index: 100;
     }
 
     .nav-item {
@@ -60,9 +52,9 @@
       color: #000;
       font-size: 20px;
       font-weight: 700;
+      transition: all 0.3s;
       position: relative;
       padding-bottom: 5px;
-      transition: all 0.3s;
     }
 
     .nav-item::after {
@@ -77,18 +69,17 @@
       transition: transform 0.3s;
     }
 
-    .nav-item:hover::after {
+    .nav-item:hover::after,
+    .nav-item.active::after {
       transform: scaleX(1);
     }
 
-    .nav-item:hover {
-      opacity: 0.7;
-    }
+    .nav-item:hover { opacity: 0.7; }
 
     .main-content {
       max-width: 1440px;
       margin: 0 auto;
-      padding: 180px 80px 80px 80px;
+      padding: 60px 80px 80px 80px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -171,12 +162,11 @@
     .profile-image {
       width: 100%;
       max-width: 800px;
-      height: 60vh; /* 🔥 ekran yüksekliğinin %60’ı */
+      height: 60vh;
       object-fit: cover;
       border-radius: 30px;
       transition: all 0.5s ease;
     }
-
 
     .toggle-container {
       display: flex;
@@ -275,9 +265,7 @@
       transition: opacity 0.3s;
     }
 
-    footer a:hover {
-      opacity: 0.7;
-    }
+    footer a:hover { opacity: 0.7; }
 
     @media (max-width: 1024px) {
       .main-content {
@@ -285,38 +273,22 @@
         padding: 140px 40px 120px 40px;
       }
 
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .logo {
-        font-size: 24px;
-      }
-
-      .nav {
-        flex-direction: column;
-        gap: 15px;
-        align-items: flex-end;
-      }
-
-      .name {
-        font-size: 48px;
-      }
+      .logo { font-size: 24px; }
+      .nav { flex-direction: column; align-items: flex-end; gap: 15px; }
+      .name { font-size: 48px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <a href="index.html" class="logo">FoaltyCoder</a>
-        
-    <nav class="nav">
-        <a href="projects.html" class="nav-item">Projects</a>
-        <a href="designs.html" class="nav-item active">Designs</a>
-        <a href="about.html" class="nav-item">About Me</a>
-        <a href="support.html" class="nav-item">Support</a>
-    </nav>
 
+    <nav class="nav">
+      <a href="projects.html" class="nav-item">Projects</a>
+      <a href="designs.html" class="nav-item">Designs</a>
+      <a href="about.html" class="nav-item">About Me</a>
+      <a href="support.html" class="nav-item">Support</a>
+    </nav>
 
     <div class="main-content">
       <div class="left-section">
@@ -379,28 +351,18 @@
   </div>
 
   <script>
-  const toggleSwitch = document.getElementById('toggleSwitch');
-  const profileImage = document.getElementById('profileImage');
+    const toggleSwitch = document.getElementById('toggleSwitch');
+    const profileImage = document.getElementById('profileImage');
 
-  // Manuel tıklama yine aktif kalsın
-  toggleSwitch.addEventListener('click', function() {
-    this.classList.toggle('active');
-    if (this.classList.contains('active')) {
-      profileImage.src = 'assets/coder.png';
-    } else {
-      profileImage.src = 'assets/designer.png';
-    }
-  });
+    toggleSwitch.addEventListener('click', function() {
+      this.classList.toggle('active');
+      profileImage.src = this.classList.contains('active') ? 'assets/coder.png' : 'assets/designer.png';
+    });
 
-  // 🔁 Otomatik 2 saniyede bir değişim
-  setInterval(() => {
-    toggleSwitch.classList.toggle('active');
-    if (toggleSwitch.classList.contains('active')) {
-      profileImage.src = 'assets/coder.png';
-    } else {
-      profileImage.src = 'assets/designer.png';
-    }
-  }, 5000);
-</script>
+    setInterval(() => {
+      toggleSwitch.classList.toggle('active');
+      profileImage.src = toggleSwitch.classList.contains('active') ? 'assets/coder.png' : 'assets/designer.png';
+    }, 5000);
+  </script>
 </body>
 </html>
