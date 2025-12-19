@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch Master - FoaltyCoder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8e8e8 0%, #e8e8e8 60%, rgba(139, 233, 253, 0.3) 70%, rgba(255, 182, 193, 0.3) 80%, rgba(255, 228, 181, 0.3) 90%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 100px;
+        }
+
+        .logo {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            font-size: 32px;
+            font-weight: 700;
+            color: #000;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            text-decoration: none;
+        }
+        
+        .nav {
+            position: absolute;
+            top: 50px;
+            right: 40px;
+            display: flex;
+            gap: 45px;
+        }
+
+        .logo:hover {
+            opacity: 0.7;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #000;
+            font-size: 20px;
+            font-weight: 700;
+            transition: all 0.3s;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #000;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .nav-item:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-item.active::after {
+            transform: scaleX(1);
+        }
+
+        .nav-item:hover {
+            opacity: 0.7;
+        }
+
+        .page-header {
+            padding: 150px 80px 40px 80px;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 64px;
+            font-weight: 900;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .page-subtitle {
+            font-size: 24px;
+            color: #666;
+            font-weight: 400;
+            margin-bottom: 40px;
+        }
+
+        .store-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+
+        .store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: #000;
+            color: #fff;
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .store-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+        }
+
+        .store-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .screenshots-section {
+            padding: 0 80px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            padding: 40px 0;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 30px;
+            transition: transform 0.5s ease;
+        }
+
+        .screenshot {
+            flex: 0 0 auto;
+            width: 280px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .screenshot:hover {
+            transform: scale(1.05);
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-btn:hover {
+            background: #000;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-btn.prev {
+            left: 20px;
+        }
+
+        .carousel-btn.next {
+            right: 20px;
+        }
+
+        .skill-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #000;
+            color: #fff;
+            padding: 30px 0;
+            overflow: hidden;
+        }
+
+        .skill-scroll {
+            display: flex;
+            animation: scroll 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .skill-item {
+            display: inline-flex;
+            align-items: center;
+            padding: 0 50px;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .skill-star {
+            margin: 0 30px;
+            font-size: 16px;
+        }
+
+        @media (max-width: 1024px) {
+            .page-header {
+                padding: 120px 40px 40px 40px;
+            }
+
+            .page-title {
+                font-size: 48px;
+            }
+
+            .page-subtitle {
+                font-size: 18px;
+            }
+
+            .screenshots-section {
+                padding: 0 40px;
+            }
+
+            .screenshot {
+                width: 220px;
+            }
+
+            .store-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .store-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-end;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .nav-item {
+                font-size: 18px;
+            }
+
+            .carousel-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="logo">FoaltyCoder</a>
+        
+        <nav class="nav">
+            <a href="projects.html" class="nav-item active">Projects</a>
+            <a href="designs.html" class="nav-item">Designs</a>
+            <a href="about.html" class="nav-item">About Me</a>
+            <a href="support.html" class="nav-item">Support</a>
+        </nav>
+
+        <div class="page-header">
+            <h3 class="page-title">LEARN GERMAN - DEUTSCH MASTER</h3>
+            
+            <div class="store-buttons">
+                <a href="https://apps.apple.com/us/app/learn-german-deutsch-master/id6754507789" class="store-btn" target="_blank">
+                    <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                    </svg>
+                    App Store
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.foaltycoder.deutschmaester" class="store-btn" target="_blank">
+                    <svg class="store-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                    </svg>
+                    Google Play
+                </a>
+            </div>
+        </div>
+
+        <div class="screenshots-section">
+            <div class="carousel-container">
+                <button class="carousel-btn prev" onclick="moveCarousel(-1)">‹</button>
+                <div class="carousel-track" id="carouselTrack">
+                    <img src="assets/app5/screenshot1.png" alt="Screenshot 1" class="screenshot">
+                    <img src="assets/app5/screenshot2.png" alt="Screenshot 2" class="screenshot">
+                    <img src="assets/app5/screenshot3.png" alt="Screenshot 3" class="screenshot">
+                    <img src="assets/app5/screenshot4.png" alt="Screenshot 4" class="screenshot">
+                    <img src="assets/app5/screenshot5.png" alt="Screenshot 5" class="screenshot">
+                    <img src="assets/app5/screenshot6.png" alt="Screenshot 6" class="screenshot">
+                    <img src="assets/app5/screenshot7.png" alt="Screenshot 7" class="screenshot">
+                    <img src="assets/app5/screenshot8.png" alt="Screenshot 8" class="screenshot">
+                    <img src="assets/app5/screenshot9.png" alt="Screenshot 9" class="screenshot">
+                    <img src="assets/app5/screenshot10.png" alt="Screenshot 10" class="screenshot">
+                </div>
+                <button class="carousel-btn next" onclick="moveCarousel(1)">›</button>
+            </div>
+        </div>
+
+        <div class="skill-bar">
+            <div class="skill-scroll">
+                <span class="skill-item">MOBILE APPLICATION</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">DESIGN</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">DEVELOP</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">PUBLISH</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">SWIFTUI</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">KOTLIN</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">FLUTTER</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">ONLINE TUTOR</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">MOBILE APPLICATION</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">DESIGN</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">DEVELOP</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">PUBLISH</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">SWIFTUI</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">KOTLIN</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">FLUTTER</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">ONLINE TUTOR</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPosition = 0;
+        const track = document.getElementById('carouselTrack');
+        const screenshots = document.querySelectorAll('.screenshot');
+        const screenshotWidth = 280 + 30; // width + gap
+        const visibleScreenshots = Math.floor(window.innerWidth / screenshotWidth);
+        const maxPosition = screenshots.length - visibleScreenshots;
+
+        function moveCarousel(direction) {
+            currentPosition += direction;
+            
+            if (currentPosition < 0) {
+                currentPosition = 0;
+            } else if (currentPosition > maxPosition) {
+                currentPosition = maxPosition;
+            }
+            
+            const offset = -currentPosition * screenshotWidth;
+            track.style.transform = `translateX(${offset}px)`;
+        }
+
+        // Touch support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        track.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        track.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                moveCarousel(1);
+            }
+            if (touchEndX > touchStartX + 50) {
+                moveCarousel(-1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') {
+                moveCarousel(-1);
+            } else if (e.key === 'ArrowRight') {
+                moveCarousel(1);
+            }
+        });
+    </script>
+</body>
+</html>
