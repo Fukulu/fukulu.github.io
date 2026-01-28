@@ -142,14 +142,32 @@
             margin-top: 40px;
         }
 
+        .collection-grid.world-grid,
+        .collection-grid.art-grid {
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        .collection-grid.avatar-grid {
+            grid-template-columns: repeat(8, 1fr);
+        }
+
         .collection-item {
-            aspect-ratio: 1;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
+            background: #fff;
+        }
+
+        .collection-item.world-item,
+        .collection-item.art-item {
+            aspect-ratio: 1179 / 2556;
+        }
+
+        .collection-item.avatar-item {
+            aspect-ratio: 600 / 900;
         }
 
         .collection-item:hover {
@@ -162,6 +180,82 @@
             height: 100%;
             object-fit: cover;
             display: block;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+            animation: scaleIn 0.3s ease;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: #fff;
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
         }
 
         .collection-divider {
@@ -214,8 +308,12 @@
 
         /* Responsive Design */
         @media (max-width: 1400px) {
-            .collection-grid {
+            .collection-grid.world-grid,
+            .collection-grid.art-grid {
                 grid-template-columns: repeat(5, 1fr);
+            }
+            .collection-grid.avatar-grid {
+                grid-template-columns: repeat(7, 1fr);
             }
         }
 
@@ -244,8 +342,14 @@
                 font-size: 16px;
             }
 
-            .collection-grid {
+            .collection-grid.world-grid,
+            .collection-grid.art-grid {
                 grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
+            }
+
+            .collection-grid.avatar-grid {
+                grid-template-columns: repeat(6, 1fr);
                 gap: 15px;
             }
 
@@ -293,8 +397,14 @@
                 font-size: 15px;
             }
 
-            .collection-grid {
+            .collection-grid.world-grid,
+            .collection-grid.art-grid {
                 grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+
+            .collection-grid.avatar-grid {
+                grid-template-columns: repeat(4, 1fr);
                 gap: 12px;
             }
 
@@ -317,11 +427,22 @@
             .nav-item {
                 font-size: 16px;
             }
+
+            .modal-close {
+                top: -40px;
+                font-size: 32px;
+            }
         }
 
         @media (max-width: 480px) {
-            .collection-grid {
+            .collection-grid.world-grid,
+            .collection-grid.art-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .collection-grid.avatar-grid {
+                grid-template-columns: repeat(3, 1fr);
                 gap: 10px;
             }
 
@@ -362,7 +483,7 @@
                         196 countries, 196 unique illustrations. Each artwork is carefully designed inspired by the cultural heritage and geography of its nation, celebrating the rich diversity of our world.
                     </p>
                 </div>
-                <div class="collection-grid" id="worldGrid"></div>
+                <div class="collection-grid world-grid" id="worldGrid"></div>
             </div>
 
             <div class="collection-divider"></div>
@@ -375,7 +496,7 @@
                         50 reimagined masterpieces. Classic paintings reinterpreted through modern illustration, honoring the original works while bringing them into the contemporary digital realm.
                     </p>
                 </div>
-                <div class="collection-grid" id="artGrid"></div>
+                <div class="collection-grid art-grid" id="artGrid"></div>
             </div>
 
             <div class="collection-divider"></div>
@@ -388,7 +509,15 @@
                         50 diverse avatars representing humanity's beautiful tapestry. Developed with deep respect for global population diversity, celebrating different religions, languages, races, and cultural backgrounds.
                     </p>
                 </div>
-                <div class="collection-grid" id="avatarGrid"></div>
+                <div class="collection-grid avatar-grid" id="avatarGrid"></div>
+            </div>
+        </div>
+
+        <!-- Modal Overlay -->
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal-content" id="modalContent">
+                <span class="modal-close" id="modalClose">&times;</span>
+                <img src="" alt="Preview" id="modalImage">
             </div>
         </div>
 
@@ -430,12 +559,48 @@
     </div>
 
     <script>
+        // Modal functionality
+        const modal = document.getElementById('modalOverlay');
+        const modalImg = document.getElementById('modalImage');
+        const modalClose = document.getElementById('modalClose');
+
+        function openModal(imgSrc) {
+            modalImg.src = imgSrc;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on click anywhere
+        modal.addEventListener('click', closeModal);
+
+        // Prevent closing when clicking on the image itself
+        modalImg.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Close button
+        modalClose.addEventListener('click', closeModal);
+
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
         // Generate World Collection (196 images)
         const worldGrid = document.getElementById('worldGrid');
         for (let i = 1; i <= 196; i++) {
             const item = document.createElement('div');
-            item.className = 'collection-item';
-            item.innerHTML = `<img src="assets/wlcollection/world/${i}.jpeg" alt="World Collection ${i}" loading="lazy">`;
+            item.className = 'collection-item world-item';
+            const imgSrc = `assets/wlcollection/world/${i}.jpeg`;
+            item.innerHTML = `<img src="${imgSrc}" alt="World Collection ${i}" loading="lazy">`;
+            item.addEventListener('click', () => openModal(imgSrc));
             worldGrid.appendChild(item);
         }
 
@@ -443,8 +608,10 @@
         const artGrid = document.getElementById('artGrid');
         for (let i = 1; i <= 50; i++) {
             const item = document.createElement('div');
-            item.className = 'collection-item';
-            item.innerHTML = `<img src="assets/wlcollection/art/${i}.jpeg" alt="Art Collection ${i}" loading="lazy">`;
+            item.className = 'collection-item art-item';
+            const imgSrc = `assets/wlcollection/art/${i}.jpeg`;
+            item.innerHTML = `<img src="${imgSrc}" alt="Art Collection ${i}" loading="lazy">`;
+            item.addEventListener('click', () => openModal(imgSrc));
             artGrid.appendChild(item);
         }
 
@@ -452,8 +619,10 @@
         const avatarGrid = document.getElementById('avatarGrid');
         for (let i = 1; i <= 50; i++) {
             const item = document.createElement('div');
-            item.className = 'collection-item';
-            item.innerHTML = `<img src="assets/wlcollection/avatar/avatar${i}.jpeg" alt="Avatar Collection ${i}" loading="lazy">`;
+            item.className = 'collection-item avatar-item';
+            const imgSrc = `assets/wlcollection/avatar/avatar${i}.jpeg`;
+            item.innerHTML = `<img src="${imgSrc}" alt="Avatar Collection ${i}" loading="lazy">`;
+            item.addEventListener('click', () => openModal(imgSrc));
             avatarGrid.appendChild(item);
         }
     </script>
