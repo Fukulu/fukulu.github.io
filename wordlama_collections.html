@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections - Word Lama by FoaltyCoder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8e8e8 0%, #e8e8e8 60%, rgba(139, 233, 253, 0.3) 70%, rgba(255, 182, 193, 0.3) 80%, rgba(255, 228, 181, 0.3) 90%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 100px;
+        }
+
+        .logo {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            font-size: 32px;
+            font-weight: 700;
+            color: #000;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            text-decoration: none;
+        }
+        
+        .nav {
+            position: absolute;
+            top: 50px;
+            right: 40px;
+            display: flex;
+            gap: 45px;
+        }
+
+        .logo:hover {
+            opacity: 0.7;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: #000;
+            font-size: 20px;
+            font-weight: 700;
+            transition: all 0.3s;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #000;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .nav-item:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-item.active::after {
+            transform: scaleX(1);
+        }
+
+        .nav-item:hover {
+            opacity: 0.7;
+        }
+
+        .page-header {
+            padding: 150px 80px 60px 80px;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 64px;
+            font-weight: 900;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .page-description {
+            font-size: 22px;
+            color: #666;
+            font-weight: 400;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .collections-wrapper {
+            padding: 0 80px 80px 80px;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .collection-section {
+            margin-bottom: 120px;
+        }
+
+        .collection-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .collection-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: #000;
+            margin-bottom: 15px;
+        }
+
+        .collection-subtitle {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .collection-item {
+            aspect-ratio: 1;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .collection-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .collection-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .collection-divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
+            margin: 80px auto;
+            max-width: 600px;
+        }
+
+        .skill-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #000;
+            color: #fff;
+            padding: 30px 0;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .skill-scroll {
+            display: flex;
+            animation: scroll 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .skill-item {
+            display: inline-flex;
+            align-items: center;
+            padding: 0 50px;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .skill-star {
+            margin: 0 30px;
+            font-size: 16px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1400px) {
+            .collection-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .page-header {
+                padding: 120px 40px 40px 40px;
+            }
+
+            .page-title {
+                font-size: 48px;
+            }
+
+            .page-description {
+                font-size: 18px;
+            }
+
+            .collections-wrapper {
+                padding: 0 40px 60px 40px;
+            }
+
+            .collection-title {
+                font-size: 36px;
+            }
+
+            .collection-subtitle {
+                font-size: 16px;
+            }
+
+            .collection-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
+            }
+
+            .collection-section {
+                margin-bottom: 80px;
+            }
+
+            .nav {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-end;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .nav-item {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 100px 20px 30px 20px;
+            }
+
+            .page-title {
+                font-size: 36px;
+            }
+
+            .page-description {
+                font-size: 16px;
+            }
+
+            .collections-wrapper {
+                padding: 0 20px 40px 20px;
+            }
+
+            .collection-title {
+                font-size: 28px;
+            }
+
+            .collection-subtitle {
+                font-size: 15px;
+            }
+
+            .collection-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+
+            .collection-section {
+                margin-bottom: 60px;
+            }
+
+            .logo {
+                font-size: 20px;
+                top: 20px;
+                left: 20px;
+            }
+
+            .nav {
+                top: 25px;
+                right: 20px;
+                gap: 10px;
+            }
+
+            .nav-item {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .collection-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .page-title {
+                font-size: 28px;
+            }
+
+            .collection-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="logo">FoaltyCoder</a>
+        
+        <nav class="nav">
+            <a href="projects.html" class="nav-item">Projects</a>
+            <a href="designs.html" class="nav-item">Designs</a>
+            <a href="about.html" class="nav-item">About Me</a>
+            <a href="support.html" class="nav-item">Support</a>
+        </nav>
+
+        <div class="page-header">
+            <h1 class="page-title">Word Lama Collections</h1>
+            <p class="page-description">
+                Explore our meticulously crafted illustration collections, each designed to celebrate diversity, culture, and artistic heritage
+            </p>
+        </div>
+
+        <div class="collections-wrapper">
+            <!-- World Collection -->
+            <div class="collection-section">
+                <div class="collection-header">
+                    <h2 class="collection-title">World Collection</h2>
+                    <p class="collection-subtitle">
+                        196 countries, 196 unique illustrations. Each artwork is carefully designed inspired by the cultural heritage and geography of its nation, celebrating the rich diversity of our world.
+                    </p>
+                </div>
+                <div class="collection-grid" id="worldGrid"></div>
+            </div>
+
+            <div class="collection-divider"></div>
+
+            <!-- Art Collection -->
+            <div class="collection-section">
+                <div class="collection-header">
+                    <h2 class="collection-title">Art Collection</h2>
+                    <p class="collection-subtitle">
+                        50 reimagined masterpieces. Classic paintings reinterpreted through modern illustration, honoring the original works while bringing them into the contemporary digital realm.
+                    </p>
+                </div>
+                <div class="collection-grid" id="artGrid"></div>
+            </div>
+
+            <div class="collection-divider"></div>
+
+            <!-- Avatar Collection -->
+            <div class="collection-section">
+                <div class="collection-header">
+                    <h2 class="collection-title">Avatar Collection</h2>
+                    <p class="collection-subtitle">
+                        50 diverse avatars representing humanity's beautiful tapestry. Developed with deep respect for global population diversity, celebrating different religions, languages, races, and cultural backgrounds.
+                    </p>
+                </div>
+                <div class="collection-grid" id="avatarGrid"></div>
+            </div>
+        </div>
+
+        <div class="skill-bar">
+            <div class="skill-scroll">
+                <span class="skill-item">MOBILE APPLICATION</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">DESIGN</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">DEVELOP</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">PUBLISH</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">SWIFTUI</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">KOTLIN</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">FLUTTER</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">ILLUSTRATION</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">MOBILE APPLICATION</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">DESIGN</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">DEVELOP</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">PUBLISH</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">SWIFTUI</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">KOTLIN</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">FLUTTER</span>
+                <span class="skill-star">✦</span>
+                <span class="skill-item">ILLUSTRATION</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generate World Collection (196 images)
+        const worldGrid = document.getElementById('worldGrid');
+        for (let i = 1; i <= 196; i++) {
+            const item = document.createElement('div');
+            item.className = 'collection-item';
+            item.innerHTML = `<img src="assets/wlcollection/world/${i}.jpeg" alt="World Collection ${i}" loading="lazy">`;
+            worldGrid.appendChild(item);
+        }
+
+        // Generate Art Collection (50 images)
+        const artGrid = document.getElementById('artGrid');
+        for (let i = 1; i <= 50; i++) {
+            const item = document.createElement('div');
+            item.className = 'collection-item';
+            item.innerHTML = `<img src="assets/wlcollection/art/${i}.jpeg" alt="Art Collection ${i}" loading="lazy">`;
+            artGrid.appendChild(item);
+        }
+
+        // Generate Avatar Collection (50 images)
+        const avatarGrid = document.getElementById('avatarGrid');
+        for (let i = 1; i <= 50; i++) {
+            const item = document.createElement('div');
+            item.className = 'collection-item';
+            item.innerHTML = `<img src="assets/wlcollection/avatar/avatar${i}.jpeg" alt="Avatar Collection ${i}" loading="lazy">`;
+            avatarGrid.appendChild(item);
+        }
+    </script>
+</body>
+</html>
