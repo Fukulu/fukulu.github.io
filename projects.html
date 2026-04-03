@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FoaltyCoder - Projects</title>
     <style>
+        @font-face {
+            font-family: 'Space Mono';
+            src: url('assets/fonts/SpaceMono-Bold.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,7 +20,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e8e8e8 0%, #e8e8e8 60%, rgba(139, 233, 253, 0.3) 70%, rgba(255, 182, 193, 0.3) 80%, rgba(255, 228, 181, 0.3) 90%);
+            background: #141414;
             overflow-x: hidden;
         }
 
@@ -25,66 +32,6 @@
             padding-bottom: 100px;
         }
 
-        .logo {
-            position: absolute;
-            top: 40px;
-            left: 40px;
-            font-size: 32px;
-            font-weight: 700;
-            color: #000;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: opacity 0.3s;
-            text-decoration: none;
-        }
-        
-        .nav {
-            position: absolute;
-            top: 50px;
-            right: 40px;
-            display: flex;
-            gap: 45px;
-        }
-
-
-        .logo:hover {
-            opacity: 0.7;
-        }
-
-        .nav-item {
-            text-decoration: none;
-            color: #000;
-            font-size: 20px;
-            font-weight: 700;
-            transition: all 0.3s;
-            position: relative;
-            padding-bottom: 5px;
-        }
-
-        .nav-item::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: #000;
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-
-        .nav-item:hover::after {
-            transform: scaleX(1);
-        }
-
-        .nav-item.active::after {
-            transform: scaleX(1);
-        }
-
-        .nav-item:hover {
-            opacity: 0.7;
-        }
-
         .page-header {
             padding: 150px 80px 60px 80px;
             text-align: center;
@@ -93,18 +40,63 @@
         .page-title {
             font-size: 64px;
             font-weight: 900;
-            color: #000;
+            color: #fff;
             margin-bottom: 20px;
         }
 
         .page-subtitle {
             font-size: 24px;
-            color: #666;
+            color: #999;
             font-weight: 400;
         }
 
+        .tabs-section {
+            padding: 120px 80px 0 80px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tabs-bar {
+            display: inline-flex;
+            background: #1e1e1e;
+            border-radius: 50px;
+            padding: 6px;
+            gap: 4px;
+            overflow-x: auto;
+            max-width: 100%;
+            scrollbar-width: none;
+        }
+
+        .tabs-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            color: #666;
+            cursor: pointer;
+            padding: 14px 40px;
+            border-radius: 44px;
+            transition: all 0.3s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .tab-btn.active {
+            background: #fff;
+            color: #000;
+        }
+
+        .tab-btn:hover:not(.active) {
+            color: #bbb;
+        }
+
         .projects-grid {
-            padding: 0 80px;
+            padding: 50px 80px 0 80px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 40px;
@@ -131,17 +123,16 @@
         }
 
         .project-image-container {
-            flex: 3;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #1e1e1e;
         }
 
         .project-image {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            aspect-ratio: 16 / 9;
+            height: auto;
+            display: block;
+            object-fit: contain;
         }
 
         .project-footer {
@@ -206,77 +197,20 @@
             color: #000;
         }
 
-        .skill-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #000;
-            color: #fff;
-            padding: 30px 0;
-            overflow: hidden;
-        }
-
-        .skill-scroll {
-            display: flex;
-            animation: scroll 25s linear infinite;
-            white-space: nowrap;
-        }
-
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        .skill-item {
-            display: inline-flex;
-            align-items: center;
-            padding: 0 50px;
-            font-size: 22px;
-            font-weight: 600;
-            letter-spacing: 2px;
-        }
-
-        .skill-star {
-            margin: 0 30px;
-            font-size: 16px;
-        }
-
         @media (max-width: 1024px) {
+            .tabs-section {
+                padding: 100px 20px 0 20px;
+            }
+
+            .tab-btn {
+                font-size: 16px;
+                padding: 12px 28px;
+            }
+
             .projects-grid {
                 grid-template-columns: 1fr;
-                padding: 0 40px;
+                padding: 40px 40px 0 40px;
                 gap: 40px;
-            }
-
-            .page-header {
-                padding: 120px 40px 40px 40px;
-            }
-
-            .page-title {
-                font-size: 48px;
-            }
-
-            .page-subtitle {
-                font-size: 18px;
-            }
-
-            .nav {
-                flex-direction: column;
-                gap: 15px;
-                align-items: flex-end;
-            }
-
-            .logo {
-                font-size: 24px;
-            }
-
-            .nav-item {
-                font-size: 18px;
             }
 
             .project-footer {
@@ -294,20 +228,16 @@
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="logo">FoaltyCoder</a>
-        
-        <nav class="nav">
-            <a href="projects.html" class="nav-item active">Projects</a>
-            <a href="designs.html" class="nav-item">Designs</a>
-            <a href="about.html" class="nav-item">About Me</a>
-            <a href="support.html" class="nav-item">Support</a>
-        </nav>
+        <div id="navbar-container"></div>
 
-        <div class="page-header">
-            <h1 class="page-title">My Projects</h1>
-            <p class="page-subtitle">Mobile applications I've developed and published</p>
+        <div class="tabs-section">
+            <div class="tabs-bar">
+                <button class="tab-btn active" onclick="switchTab('mobile', this)">Mobile Apps</button>
+                <button class="tab-btn" onclick="switchTab('websites', this)">Web Sites</button>
+            </div>
         </div>
 
+        <div id="tab-mobile">
         <div class="projects-grid">
             <!-- Proje 0 -->
             <div class="project-card">
@@ -369,32 +299,15 @@
                     <div class="project-info">
                         <img src="assets/app2/icon2.png" alt="App Logo" class="project-logo">
                         <div class="project-details">
-                            <h3 class="project-name">Traveler Currency</h3>
-                            <p class="project-description">The smart global budget companion — travel the world, exchange easily, and save more!</p>
+                            <h3 class="project-name">Budget Planner - Kakeibo</h3>
+                            <p class="project-description">Welcome to the simplest and most organized budget planning app in the world. Managing your budget and getting reports has never been this easy...</p>
                         </div>
                     </div>
-                    <a href="#project-detail.html" class="learn-more-btn">Learn More</a>
+                    <a href="kakeibo.html" class="learn-more-btn">Learn More</a>
                 </div>
             </div>
 
             <!-- Proje 4 -->
-            <div class="project-card">
-                <div class="project-image-container">
-                    <img src="assets/app3/banner3.png" alt="Smile Scanner" class="project-image">
-                </div>
-                <div class="project-footer">
-                    <div class="project-info">
-                        <img src="assets/app3/icon3.png" alt="App Logo" class="project-logo">
-                        <div class="project-details">
-                            <h3 class="project-name">Smile Scanner</h3>
-                            <p class="project-description">Experience refined digital dentistry — scan, analyze, and design your perfect smile!</p>
-                        </div>
-                    </div>
-                    <a href="#project-detail.html" class="learn-more-btn">Learn More</a>
-                </div>
-            </div>
-
-            <!-- Proje 5 -->
             <div class="project-card">
                 <div class="project-image-container">
                     <img src="assets/app4/banner4.png" alt="KratosSurgery" class="project-image">
@@ -407,11 +320,11 @@
                             <p class="project-description">High-resolution 3D face models designed for professional plastic surgery planning and analysis.</p>
                         </div>
                     </div>
-                    <a href="#project-detail.html" class="learn-more-btn">Learn More</a>
+                    <a href="https://www.kratos3d.com/" target="_blank" class="learn-more-btn">Learn More</a>
                 </div>
             </div>
 
-            <!-- Proje 6 -->
+            <!-- Proje 5 -->
             <div class="project-card">
                 <div class="project-image-container">
                     <img src="assets/download.jpg" alt="Upcoming" class="project-image">
@@ -420,35 +333,79 @@
                     <div class="project-info">
                         <img src="assets/download.jpg" alt="App Logo" class="project-logo">
                         <div class="project-details">
-                            <h3 class="project-name">Upcoming</h3>
-                            <p class="project-description">Upcoming...</p>
+                            <h3 class="project-name">Upcoming...</h3>
+                            <p class="project-description">New project coming soon.</p>
                         </div>
                     </div>
-                    <a href="#project-detail.html" class="learn-more-btn">Learn More</a>
                 </div>
             </div>
 
         </div>
-
-        <div class="skill-bar">
-            <div class="skill-scroll">
-                <span class="skill-item">MOBILE APPLICATION</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">DESIGN</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">DEVELOP</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">PUBLISH</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">SWIFTUI</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">KOTLIN</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">FLUTTER</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">ONLINE TUTOR</span>
-            </div>
         </div>
+
+        <div id="tab-websites" style="display:none;">
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="assets/web1/banner1.png" alt="Casa Elia Datça" class="project-image">
+                </div>
+                <div class="project-footer">
+                    <div class="project-info">
+                        <img src="assets/web1/app1.png" alt="Casa Elia Logo" class="project-logo">
+                        <div class="project-details">
+                            <h3 class="project-name">Casa Elia Datça</h3>
+                            <p class="project-description">A unique hotel nestled in nature at Karaincir, one of Turkey's most extraordinary bays...</p>
+                        </div>
+                    </div>
+                    <a href="https://casaeliadatca.com/" target="_blank" class="learn-more-btn">Learn More</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="assets/download.jpg" alt="Upcoming" class="project-image">
+                </div>
+                <div class="project-footer">
+                    <div class="project-info">
+                        <img src="assets/download.jpg" alt="App Logo" class="project-logo">
+                        <div class="project-details">
+                            <h3 class="project-name">Upcoming...</h3>
+                            <p class="project-description">New website coming soon.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image-container">
+                    <img src="assets/download.jpg" alt="Upcoming" class="project-image">
+                </div>
+                <div class="project-footer">
+                    <div class="project-info">
+                        <img src="assets/download.jpg" alt="App Logo" class="project-logo">
+                        <div class="project-details">
+                            <h3 class="project-name">Upcoming...</h3>
+                            <p class="project-description">New website coming soon.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+        <div id="footer-container"></div>
     </div>
+
+    <script src="components/loader.js"></script>
+    <script>
+        function switchTab(tab, btn) {
+            document.getElementById('tab-mobile').style.display = tab === 'mobile' ? '' : 'none';
+            document.getElementById('tab-websites').style.display = tab === 'websites' ? '' : 'none';
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+    </script>
 </body>
 </html>

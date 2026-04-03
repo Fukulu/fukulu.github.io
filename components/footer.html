@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer Component</title>
+    <style>
+        @font-face {
+            font-family: 'SpaceMono';
+            src: url('assets/Space_Mono/SpaceMono-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #000;
+            color: #fff;
+            padding: 30px 0;
+            overflow: hidden;
+            z-index: 50;
+        }
+
+        .footer-scroll {
+            display: flex;
+            animation: scroll 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .footer-item {
+            font-family: 'SpaceMono', monospace;
+            display: inline-flex;
+            align-items: center;
+            padding: 0 50px;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .footer-star {
+            margin: 0 30px;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-item {
+                font-size: 16px;
+                padding: 0 30px;
+            }
+
+            .footer-star {
+                margin: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="footer">
+        <div class="footer-scroll">
+            <!-- Set 1 -->
+            <span class="footer-item">MOBILE APPLICATION DEVELOPMENT</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">WEB DEVELOPMENT</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">DESIGN</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">FIGMA</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">AFFINITY</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">DEVELOP</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">PUBLISH</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">SWIFTUI</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">KOTLIN</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">JETPACK COMPOSE</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">FLUTTER</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">DART</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">HTML</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">CSS</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">JAVASCRIPT</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">PYTHON</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">NODE.JS</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">FIREBASE</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">CLOUDFLARE</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">CDN</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">BAAS</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">ONLINE TUTOR</span>
+            <span class="footer-star">✦</span>
+            <!-- Set 2 (identical copy for seamless loop) -->
+            <span class="footer-item">MOBILE APPLICATION DEVELOPMENT</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">WEB DEVELOPMENT</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">DESIGN</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">FIGMA</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">AFFINITY</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">DEVELOP</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">PUBLISH</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">SWIFTUI</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">KOTLIN</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">JETPACK COMPOSE</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">FLUTTER</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">DART</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">HTML</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">CSS</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">JAVASCRIPT</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">PYTHON</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">NODE.JS</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">FIREBASE</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">CLOUDFLARE</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">CDN</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">BAAS</span>
+            <span class="footer-star">✦</span>
+            <span class="footer-item">ONLINE TUTOR</span>
+            <span class="footer-star">✦</span>
+        </div>
+    </div>
+</body>
+</html>

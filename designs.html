@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e8e8e8 0%, #e8e8e8 60%, rgba(139, 233, 253, 0.3) 70%, rgba(255, 182, 193, 0.3) 80%, rgba(255, 228, 181, 0.3) 90%);
+            background: #141414;
             overflow-x: hidden;
         }
 
@@ -24,65 +24,6 @@
             position: relative;
         }
 
-        .logo {
-            position: absolute;
-            top: 40px;
-            left: 40px;
-            font-size: 32px;
-            font-weight: 700;
-            color: #000;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: opacity 0.3s;
-            text-decoration: none;
-        }
-
-        .logo:hover {
-            opacity: 0.7;
-        }
-
-        .nav {
-            position: absolute;
-            top: 50px;
-            right: 40px;
-            display: flex;
-            gap: 45px;
-        }
-
-        .nav-item {
-            text-decoration: none;
-            color: #000;
-            font-size: 20px;
-            font-weight: 700;
-            transition: all 0.3s;
-            position: relative;
-            padding-bottom: 5px;
-        }
-
-        .nav-item::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: #000;
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-
-        .nav-item:hover::after {
-            transform: scaleX(1);
-        }
-
-        .nav-item.active::after {
-            transform: scaleX(1);
-        }
-
-        .nav-item:hover {
-            opacity: 0.7;
-        }
-
         .page-header {
             padding: 150px 80px 60px 80px;
             text-align: center;
@@ -91,13 +32,13 @@
         .page-title {
             font-size: 64px;
             font-weight: 900;
-            color: #000;
+            color: #fff;
             margin-bottom: 20px;
         }
 
         .page-subtitle {
             font-size: 24px;
-            color: #666;
+            color: #999;
             font-weight: 400;
         }
 
@@ -112,7 +53,7 @@
         .project-title {
             font-size: 32px;
             font-weight: 700;
-            color: #000;
+            color: #fff;
             margin-bottom: 40px;
             text-align: center;
         }
@@ -155,10 +96,6 @@
         .design-image {
             width: 100%;
             height: auto;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-            border-radius: 0;
-            box-shadow: none;
             display: block;
         }
         
@@ -194,46 +131,6 @@
         }
 
 
-        .skill-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #000;
-            color: #fff;
-            padding: 30px 0;
-            overflow: hidden;
-        }
-
-        .skill-scroll {
-            display: flex;
-            animation: scroll 25s linear infinite;
-            white-space: nowrap;
-        }
-
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        .skill-item {
-            display: inline-flex;
-            align-items: center;
-            padding: 0 50px;
-            font-size: 22px;
-            font-weight: 600;
-            letter-spacing: 2px;
-        }
-
-        .skill-star {
-            margin: 0 30px;
-            font-size: 16px;
-        }
-
         @media (max-width: 1024px) {
             .page-header {
                 padding: 120px 40px 40px 40px;
@@ -255,32 +152,12 @@
                 font-size: 24px;
             }
 
-            .nav {
-                flex-direction: column;
-                gap: 15px;
-                align-items: flex-end;
-            }
-
-            .logo {
-                font-size: 24px;
-            }
-
-            .nav-item {
-                font-size: 18px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="logo">FoaltyCoder</a>
-        
-        <nav class="nav">
-            <a href="projects.html" class="nav-item">Projects</a>
-            <a href="designs.html" class="nav-item active">Designs</a>
-            <a href="about.html" class="nav-item">About Me</a>
-            <a href="support.html" class="nav-item">Support</a>
-        </nav>
+        <div id="navbar-container"></div>
 
         <div class="page-header">
             <h1 class="page-title">My Designs</h1>
@@ -368,6 +245,22 @@
                 </div>
             </div>
             
+            <!-- Design Project 6 - Kakeibo -->
+            <div class="design-project">
+                <h2 class="project-title">Budget Planner - Kakeibo</h2>
+                <div class="carousel-container">
+                    <div class="carousel-wrapper" id="carousel6">
+                        <div class="design-slide">
+                            <img src="assets/kakeibo/PAGE-I.png" alt="Design 1" class="design-image">
+                        </div>
+                        <div class="design-slide">
+                            <img src="assets/kakeibo/PAGE-II.png" alt="Design 2" class="design-image">
+                        </div>
+                    </div>
+                    <div class="carousel-dots" id="dots6"></div>
+                </div>
+            </div>
+
             <!-- Design Project 3 -->
             <div class="design-project">
                 <h2 class="project-title">Deutsch Master - Learn German</h2>
@@ -384,28 +277,6 @@
                         </div>
                     </div>
                     <div class="carousel-dots" id="dots3"></div>
-                </div>
-            </div>
-
-            <!-- Design Project 6 -->
-            <div class="design-project">
-                <h2 class="project-title">Upcoming...</h2>
-                <div class="carousel-container">
-                    <div class="carousel-wrapper" id="carousel6">
-                        <div class="design-slide">
-                            <img src="assets/download.jpg" alt="Design 1" class="design-image">
-                        </div>
-                        <div class="design-slide">
-                            <img src="assets/download.jpg" alt="Design 1" class="design-image">
-                        </div>
-                        <div class="design-slide">
-                            <img src="assets/download.jpg" alt="Design 1" class="design-image">
-                        </div>
-                        <div class="design-slide">
-                            <img src="assets/download.jpg" alt="Design 1" class="design-image">
-                        </div>
-                    </div>
-                    <div class="carousel-dots" id="dots6"></div>
                 </div>
             </div>
             
@@ -433,36 +304,10 @@
             </div>
         </div>
 
-        <div class="skill-bar">
-            <div class="skill-scroll">
-                <span class="skill-item">MOBILE APPLICATION</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">DESIGN</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">DEVELOP</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">PUBLISH</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">SWIFTUI</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">KOTLIN</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">FLUTTER</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">ONLINE TUTOR</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">MOBILE APPLICATION</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">DESIGN</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">DEVELOP</span>
-                <span class="skill-star">✦</span>
-                <span class="skill-item">PUBLISH</span>
-                <span class="skill-star">✦</span>
-            </div>
-        </div>
+        <div id="footer-container"></div>
     </div>
 
+    <script src="components/loader.js"></script>
     <script>
         // Initialize carousels
         const carousels = [

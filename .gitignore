@@ -1,0 +1,41 @@
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+
+# macOS directory metadata
+__MACOSX/
+
+# Thumbnails
+Thumbs.db
+ehthumbs.db
+
+# IDE / Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Logs
+*.log
+npm-debug.log*
+
+# Node (if ever used)
+node_modules/
+package-lock.json
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+
+# Temp / cache
+*.tmp
+*.temp
+.cache/

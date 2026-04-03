@@ -5,13 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FoaltyCoder - Mobile Application Developer</title>
   <style>
+    @font-face {
+      font-family: 'SpaceMono';
+      src: url('assets/Space_Mono/SpaceMono-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #e8e8e8 0%, #e8e8e8 60%, rgba(139,233,253,0.3) 70%, rgba(255,182,193,0.3) 80%, rgba(255,228,181,0.3) 90%);
+      background: #141414;
       overflow-x: hidden;
-      background-attachment: fixed;
     }
 
     .container {
@@ -19,85 +25,83 @@
       margin: 0 auto;
       min-height: 100vh;
       position: relative;
-    }
-
-    .logo {
-        position: fixed;
-        top: 40px;
-        left: 40px;
-        font-size: 32px;
-        font-weight: 700;
-        color: #000;
-        letter-spacing: 1px;
-        cursor: pointer;
-        transition: opacity 0.3s;
-        text-decoration: none;
-        z-index: 100;
-    }
-
-    .logo:hover {
-        opacity: 0.7;
-    }
-
-    .nav {
-        position: fixed;
-        top: 50px;
-        right: 40px;
-        display: flex;
-        gap: 45px;
-        z-index: 100;
-    }
-
-    .nav-item {
-        text-decoration: none;
-        color: #000;
-        font-size: 20px;
-        font-weight: 700;
-        transition: all 0.3s;
-        position: relative;
-        padding-bottom: 5px;
-    }
-
-    .nav-item::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: #000;
-        transform: scaleX(0);
-        transition: transform 0.3s;
-    }
-
-    .nav-item:hover::after {
-        transform: scaleX(1);
-    }
-
-    .nav-item.active::after {
-        transform: scaleX(1);
-    }
-
-    .nav-item:hover {
-        opacity: 0.7;
+      z-index: 1;
     }
 
     .main-content {
-        max-width: 1440px;
-        margin: 0 auto;
-        padding: 180px 80px 120px 80px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 60px;
-        min-height: calc(100vh - 100px);
+      width: 100%;
+      padding: 120px 60px 120px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 60px;
+      min-height: 100vh;
+      box-sizing: border-box;
     }
 
     .left-section {
       flex: 1;
-      max-width: 600px;
+      min-width: 0;
+      padding-left: 4vw;
     }
-    
+
+    .code-tag {
+      font-family: 'SpaceMono', monospace;
+      font-size: clamp(13px, 1.1vw, 16px);
+      margin-bottom: 28px;
+      display: inline-block;
+    }
+
+    .code-tag .bracket {
+      color: #808080;
+    }
+
+    .code-tag .tag-text {
+      color: #4ec9b0;
+    }
+
+    .hero-title {
+      font-family: 'SpaceMono', monospace;
+      font-weight: 700;
+      font-size: clamp(24px, 3.72vw, 60px);
+      color: #ffffff;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 48px;
+      margin-top: 52px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .stat-number {
+      font-family: 'SpaceMono', monospace;
+      font-size: clamp(36px, 3.6vw, 56px);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'SpaceMono', monospace;
+      font-size: clamp(10px, 0.9vw, 13px);
+      line-height: 1.4;
+    }
+
+    .stat-label .s-comment  { color: #6a9955; }
+    .stat-label .s-property { color: #9cdcfe; }
+    .stat-label .s-string   { color: #ce9178; }
+    .stat-label .s-bracket  { color: #808080; }
+
     .right-section {
       flex: 1;
       display: flex;
@@ -106,311 +110,140 @@
       justify-content: center;
     }
 
-    .greeting {
-      font-size: 48px;
-      font-weight: 300;
-      color: #333;
-      margin-bottom: 10px;
-    }
-
-    .name {
-      font-size: 72px;
-      font-weight: 900;
-      color: #000;
-      display: block;
-    }
-
-    .title-line {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 40px;
-      margin-top: 30px;
-    }
-
-    .line {
-      width: 100px;
-      height: 2px;
-      background: #333;
-    }
-
-    .title {
-      font-size: 28px;
-      font-weight: 400;
-      color: #333;
-    }
-
-    .diamond {
-      font-size: 24px;
-    }
-
-    .description {
-      font-size: 18px;
-      line-height: 1.6;
-      color: #333;
-      margin-bottom: 40px;
-    }
-
-    .principles {
-      margin-bottom: 50px;
-    }
-
-    .principle {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 15px;
-      font-size: 16px;
-      color: #333;
-    }
-
-    .checkmark {
-      font-size: 20px;
-      color: #000;
+    .profile-image-wrapper {
+      width: min(520px, 42vw);
+      height: min(520px, 42vw);
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      overflow: hidden;
+      flex-shrink: 0;
     }
 
     .profile-image {
       width: 100%;
-      max-width: 1000px;
-      height: auto;
-      transition: all 0.5s ease;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.4s ease;
+      filter: grayscale(30%);
     }
 
-    .toggle-container {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      background: #fff;
-      padding: 15px 30px;
-      border-radius: 50px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      margin-top: 30px;
-    }
-
-    .toggle-label {
-      font-size: 18px;
-      font-weight: 600;
-      color: #666;
-    }
-
-    .toggle-switch {
-      position: relative;
-      width: 80px;
-      height: 40px;
-      background: #ddd;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .toggle-switch.active {
-      background: #000;
-    }
-
-    .toggle-slider {
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      width: 32px;
-      height: 32px;
-      background: #fff;
-      border-radius: 50%;
-      transition: all 0.3s;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .toggle-switch.active .toggle-slider {
-      transform: translateX(40px);
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px 0 100px;
-      font-size: 14px;
-      color: #444;
-    }
-
-    footer a {
-      text-decoration: none;
-      color: #000;
-      font-weight: 500;
-      transition: opacity 0.3s;
-      margin: 0 15px;
-    }
-
-    footer a:hover { 
-      opacity: 0.7; 
-    }
-
-    .divider {
-      color: #999;
-      margin: 0 10px;
-    }
-
-    .skill-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #000;
-      color: #fff;
-      padding: 30px 0;
-      overflow: hidden;
-      z-index: 50;
-    }
-
-    .skill-scroll {
-      display: flex;
-      animation: scroll 25s linear infinite;
-      white-space: nowrap;
-    }
-
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .skill-item {
-      display: inline-flex;
-      align-items: center;
-      padding: 0 50px;
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: 2px;
-    }
-
-    .skill-star {
-      margin: 0 30px;
+    .profile-label {
+      margin-top: 20px;
+      font-family: 'SpaceMono', monospace;
       font-size: 16px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: opacity 0.4s ease;
     }
 
     @media (max-width: 1024px) {
       .main-content {
         flex-direction: column;
-        padding: 140px 40px 120px 40px;
+        padding: 120px 40px 120px 40px;
+        gap: 50px;
       }
 
       .left-section {
-        max-width: 100%;
+        width: 100%;
+        padding-left: 0;
       }
 
       .right-section {
         width: 100%;
       }
 
-      .logo { 
-        font-size: 24px; 
+      .profile-image-wrapper {
+        width: min(320px, 80vw);
+        height: min(320px, 80vw);
       }
 
-      .nav { 
-        flex-direction: column; 
-        align-items: flex-end; 
-        gap: 15px; 
+      .hero-title {
+        font-size: clamp(24px, 7.2vw, 46px);
       }
 
-      .nav-item {
-        font-size: 18px;
+      .stats-row {
+        gap: 28px;
+        margin-top: 36px;
       }
 
-      .name { 
-        font-size: 48px; 
-      }
-
-      .greeting {
+      .stat-number {
         font-size: 36px;
-      }
-
-      .title {
-        font-size: 22px;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <a href="index.html" class="logo">FoaltyCoder</a>
-
-    <nav class="nav">
-      <a href="projects.html" class="nav-item">Projects</a>
-      <a href="designs.html" class="nav-item">Designs</a>
-      <a href="about.html" class="nav-item">About Me</a>
-      <a href="support.html" class="nav-item">Support</a>
-    </nav>
+    <div id="navbar-container"></div>
 
     <div class="main-content">
       <div class="left-section">
-        <h1 class="greeting">Hello! <span class="name">I'm the FoaltyCoder</span></h1>
-        <div class="title-line">
-          <span class="line"></span>
-          <h2 class="title">Mobile App Developer</h2>
-          <span class="diamond">✦</span>
-        </div>
+        <p class="code-tag"><span class="bracket">&lt;</span><span class="tag-text">10+ Years Experience</span><span class="bracket">&gt;</span></p>
+        <h1 class="hero-title">BUILDING FAST, SCALABLE, AND SECURE MOBILE APP & WEBSITE</h1>
 
-        <p class="description">
-          Design and develop modern, high-performance mobile applications using both native and multiplatform technologies.
-        </p>
-
-        <div class="principles">
-          <div class="principle"><span class="checkmark">✓</span> Modern App Design on Figma</div>
-          <div class="principle"><span class="checkmark">✓</span> SwiftUI and Kotlin for native development</div>
-          <div class="principle"><span class="checkmark">✓</span> Multiplatform development with Flutter</div>
-          <div class="principle"><span class="checkmark">✓</span> 10+ Apps on AppStore and PlayStore</div>
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-number">56</span>
+            <span class="stat-label">
+              <span class="s-bracket">// </span><span class="s-comment">completed</span><br>
+              <span class="s-property">projects</span>
+            </span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">10+</span>
+            <span class="stat-label">
+              <span class="s-bracket">// </span><span class="s-comment">years in</span><br>
+              <span class="s-property">development</span>
+            </span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">7+</span>
+            <span class="stat-label">
+              <span class="s-bracket">// </span><span class="s-comment">clients</span><br>
+              <span class="s-string">worldwide</span>
+            </span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">+100K</span>
+            <span class="stat-label">
+              <span class="s-bracket">// </span><span class="s-comment">users on</span><br>
+              <span class="s-string">my built platforms</span>
+            </span>
+          </div>
         </div>
       </div>
 
       <div class="right-section">
-        <img id="profileImage" src="assets/designer.png" alt="Profile" class="profile-image">
-        <div class="toggle-container">
-          <span class="toggle-label">Designer</span>
-          <div class="toggle-switch" id="toggleSwitch">
-            <div class="toggle-slider"></div>
-          </div>
-          <span class="toggle-label">Developer</span>
+        <div class="profile-image-wrapper">
+          <img id="profileImage" src="assets/designer.png" alt="Profile" class="profile-image">
         </div>
+        <span id="profileLabel" class="profile-label">Designer</span>
       </div>
     </div>
 
-    <footer>
-      <a href="privacy.html">Privacy Policy</a>
-      <span class="divider">|</span>
-      <a href="terms.html">Terms of Use</a>
-    </footer>
+    <div id="footer-container"></div>
 
-    <div class="skill-bar">
-      <div class="skill-scroll">
-        <span class="skill-item">MOBILE APPLICATION</span>
-        <span class="skill-star">✦</span>
-        <span class="skill-item">DESIGN</span>
-        <span class="skill-star">✦</span>
-        <span class="skill-item">DEVELOP</span>
-        <span class="skill-star">✦</span>
-        <span class="skill-item">PUBLISH</span>
-        <span class="skill-star">✦</span>
-        <span class="skill-item">SWIFTUI</span>
-        <span class="skill-star">✦</span>
-        <span class="skill-item">KOTLIN</span>
-        <span class="skill-star">✦</span>
-        <span class="skill-item">FLUTTER</span>
-        <span class="skill-star">✦</span>
-        <span class="skill-item">ONLINE TUTOR</span>
-      </div>
-    </div>
-  </div>
+    <script src="components/loader.js"></script>
+    <script>
+      const profileImage = document.getElementById('profileImage');
+      const profileLabel = document.getElementById('profileLabel');
+      let isDeveloper = false;
 
-  <script>
-    const toggleSwitch = document.getElementById('toggleSwitch');
-    const profileImage = document.getElementById('profileImage');
+      function switchImage() {
+        profileImage.style.opacity = '0';
+        profileLabel.style.opacity = '0';
+        setTimeout(() => {
+          isDeveloper = !isDeveloper;
+          profileImage.src = isDeveloper ? 'assets/coder.png' : 'assets/designer.png';
+          profileLabel.textContent = isDeveloper ? 'Developer' : 'Designer';
+          profileImage.style.opacity = '1';
+          profileLabel.style.opacity = '1';
+        }, 400);
+      }
 
-    toggleSwitch.addEventListener('click', function() {
-      this.classList.toggle('active');
-      profileImage.src = this.classList.contains('active') ? 'assets/coder.png' : 'assets/designer.png';
-    });
-
-    // Otomatik değişim - her 5 saniyede
-    setInterval(() => {
-      toggleSwitch.classList.toggle('active');
-      profileImage.src = toggleSwitch.classList.contains('active') ? 'assets/coder.png' : 'assets/designer.png';
-    }, 5000);
-  </script>
+      setInterval(switchImage, 3000);
+    </script>
 </body>
 </html>
