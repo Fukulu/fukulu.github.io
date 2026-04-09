@@ -67,4 +67,4 @@ If you’d like to collaborate, discuss a project, or get in touch:
 - [Privacy Policy](privacy.html)  
 - [Terms of Use](terms.html)
 
-© 2025 **FoaltyCoder** — All rights reserved.
+© 2026 **FoaltyCoder** — All rights reserved.

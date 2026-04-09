@@ -152,6 +152,144 @@
             transform: scale(1.02);
         }
 
+        /* ── Instructions ── */
+        .instructions-section {
+            max-width: 860px;
+            margin: 60px auto 0 auto;
+            padding: 0 40px;
+        }
+
+        .instructions-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .instructions-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .lang-select {
+            background: #1e1e1e;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 10px;
+            padding: 10px 16px;
+            font-size: 15px;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .lang-select:hover, .lang-select:focus {
+            border-color: rgba(255,255,255,0.35);
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .accordion-btn {
+            width: 100%;
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 0;
+            cursor: pointer;
+            text-align: left;
+            gap: 16px;
+        }
+
+        .accordion-btn-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .accordion-num {
+            font-size: 13px;
+            font-weight: 700;
+            color: #555;
+            min-width: 24px;
+        }
+
+        .accordion-label {
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .accordion-arrow {
+            width: 20px;
+            height: 20px;
+            color: #666;
+            flex-shrink: 0;
+            transition: transform 0.3s;
+        }
+
+        .accordion-item.open .accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        .accordion-body {
+            display: none;
+            padding-bottom: 28px;
+        }
+
+        .accordion-item.open .accordion-body {
+            display: block;
+        }
+
+        .accordion-text {
+            font-size: 15px;
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .accordion-text ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        .accordion-text ul li {
+            padding: 4px 0 4px 18px;
+            position: relative;
+        }
+
+        .accordion-text ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #555;
+        }
+
+        .accordion-imgs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .accordion-imgs img {
+            border-radius: 14px;
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            flex: 1 1 200px;
+            max-height: 420px;
+            object-fit: contain;
+            background: #1a1a1a;
+        }
+
         @media (max-width: 1024px) {
             .page-header {
                 padding: 120px 40px 40px 40px;
@@ -178,6 +316,14 @@
                 width: 100%;
                 max-width: 300px;
                 justify-content: center;
+            }
+
+            .instructions-section {
+                padding: 0 20px;
+            }
+
+            .accordion-label {
+                font-size: 16px;
             }
         }
     </style>
@@ -219,9 +365,244 @@
             </div>
         </div>
 
+        <!-- Instructions -->
+        <div class="instructions-section">
+            <div class="instructions-header">
+                <h2 class="instructions-title" id="instr-heading">Instructions</h2>
+                <select class="lang-select" id="langSelect" onchange="setLang(this.value)">
+                    <option value="en">🇬🇧 English</option>
+                    <option value="tr">🇹🇷 Türkçe</option>
+                    <option value="de">🇩🇪 Deutsch</option>
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="pt">🇵🇹 Português</option>
+                    <option value="it">🇮🇹 Italiano</option>
+                    <option value="nl">🇳🇱 Nederlands</option>
+                    <option value="ru">🇷🇺 Русский</option>
+                    <option value="ja">🇯🇵 日本語</option>
+                    <option value="ko">🇰🇷 한국어</option>
+                    <option value="zh">🇨🇳 中文</option>
+                    <option value="ar">🇸🇦 العربية</option>
+                    <option value="pl">🇵🇱 Polski</option>
+                    <option value="sv">🇸🇪 Svenska</option>
+                </select>
+            </div>
+
+            <div id="accordion"></div>
+        </div>
+
         <div id="footer-container"></div>
     </div>
 
     <script src="components/loader.js"></script>
+    <script>
+    const sections = [
+        {
+            imgs: ['assets/app3/install-24.png', 'assets/app3/generelView-30.png', 'assets/app3/connected-28.png'],
+            content: {
+                en: { title: 'Installation', text: '<ul><li>Download MouseKit from the official Mac App Store to your Mac.</li><li>Open and run the application.</li><li>Once installed, the Mouse icon will appear in your menu bar.</li><li>When your Philips SPK7858 is connected via Bluetooth, the app will recognize it and display your battery status.</li></ul>' },
+                tr: { title: 'Yükleme', text: '<ul><li>Uygulamayı yalnızca Resmi Mac App Store mağazasından Mac\'inize indirin.</li><li>Uygulamayı açın ve çalıştırın.</li><li>Başarıyla yüklendiğinde, menü çubuğunuzda Mouse ikonu görünecektir.</li><li>Fareniz Bluetooth ile bağlandığında uygulama tarafından tanımlanır ve Batarya durumunuzu size gösterir.</li></ul>' },
+                de: { title: 'Installation', text: '<ul><li>Laden Sie MouseKit aus dem offiziellen Mac App Store auf Ihren Mac herunter.</li><li>Öffnen und starten Sie die Anwendung.</li><li>Nach der Installation erscheint das Maus-Symbol in Ihrer Menüleiste.</li><li>Sobald Ihre Philips SPK7858 via Bluetooth verbunden ist, erkennt die App sie und zeigt den Akkustand an.</li></ul>' },
+                fr: { title: 'Installation', text: '<ul><li>Téléchargez MouseKit depuis le Mac App Store officiel sur votre Mac.</li><li>Ouvrez et lancez l\'application.</li><li>Une fois installée, l\'icône de souris apparaîtra dans votre barre de menus.</li><li>Lorsque votre Philips SPK7858 est connectée via Bluetooth, l\'application la reconnaît et affiche le niveau de batterie.</li></ul>' },
+                es: { title: 'Instalación', text: '<ul><li>Descarga MouseKit desde la Mac App Store oficial en tu Mac.</li><li>Abre y ejecuta la aplicación.</li><li>Una vez instalada, el icono del ratón aparecerá en tu barra de menús.</li><li>Cuando tu Philips SPK7858 esté conectado vía Bluetooth, la app lo reconocerá y mostrará el estado de la batería.</li></ul>' },
+                pt: { title: 'Instalação', text: '<ul><li>Baixe o MouseKit da Mac App Store oficial para o seu Mac.</li><li>Abra e execute o aplicativo.</li><li>Após a instalação, o ícone do mouse aparecerá na sua barra de menus.</li><li>Quando o Philips SPK7858 estiver conectado via Bluetooth, o app o reconhecerá e exibirá o status da bateria.</li></ul>' },
+                it: { title: 'Installazione', text: '<ul><li>Scarica MouseKit dal Mac App Store ufficiale sul tuo Mac.</li><li>Apri ed esegui l\'applicazione.</li><li>Una volta installata, l\'icona del mouse apparirà nella barra dei menu.</li><li>Quando il tuo Philips SPK7858 è connesso tramite Bluetooth, l\'app lo riconosce e mostra lo stato della batteria.</li></ul>' },
+                nl: { title: 'Installatie', text: '<ul><li>Download MouseKit van de officiële Mac App Store naar je Mac.</li><li>Open en start de applicatie.</li><li>Na installatie verschijnt het muispictogram in je menubalk.</li><li>Wanneer je Philips SPK7858 via Bluetooth is verbonden, herkent de app hem en toont de batterijstatus.</li></ul>' },
+                ru: { title: 'Установка', text: '<ul><li>Загрузите MouseKit из официального Mac App Store на ваш Mac.</li><li>Откройте и запустите приложение.</li><li>После установки в строке меню появится значок мыши.</li><li>Когда ваша Philips SPK7858 подключена через Bluetooth, приложение распознает её и отобразит уровень заряда батареи.</li></ul>' },
+                ja: { title: 'インストール', text: '<ul><li>公式Mac App StoreからMouseKitをMacにダウンロードします。</li><li>アプリを開いて起動します。</li><li>インストール後、メニューバーにマウスアイコンが表示されます。</li><li>Philips SPK7858がBluetoothで接続されると、アプリが認識してバッテリー残量を表示します。</li></ul>' },
+                ko: { title: '설치', text: '<ul><li>공식 Mac App Store에서 MouseKit을 Mac에 다운로드합니다.</li><li>앱을 열고 실행합니다.</li><li>설치 후 메뉴 바에 마우스 아이콘이 나타납니다.</li><li>Philips SPK7858이 Bluetooth로 연결되면 앱이 이를 인식하고 배터리 상태를 표시합니다.</li></ul>' },
+                zh: { title: '安装', text: '<ul><li>从官方Mac App Store下载MouseKit到您的Mac。</li><li>打开并运行应用程序。</li><li>安装后，鼠标图标将出现在菜单栏中。</li><li>当您的Philips SPK7858通过蓝牙连接后，应用将识别它并显示电池状态。</li></ul>' },
+                ar: { title: 'التثبيت', text: '<ul><li>قم بتنزيل MouseKit من Mac App Store الرسمي على جهاز Mac الخاص بك.</li><li>افتح التطبيق وقم بتشغيله.</li><li>بعد التثبيت، سيظهر أيقونة الفأرة في شريط القائمة.</li><li>عند توصيل Philips SPK7858 عبر البلوتوث، سيتعرف التطبيق عليه ويعرض حالة البطارية.</li></ul>' },
+                pl: { title: 'Instalacja', text: '<ul><li>Pobierz MouseKit z oficjalnego Mac App Store na swój Mac.</li><li>Otwórz i uruchom aplikację.</li><li>Po instalacji ikona myszy pojawi się na pasku menu.</li><li>Gdy Philips SPK7858 jest połączony przez Bluetooth, aplikacja go rozpozna i wyświetli stan baterii.</li></ul>' },
+                sv: { title: 'Installation', text: '<ul><li>Ladda ner MouseKit från den officiella Mac App Store till din Mac.</li><li>Öppna och kör programmet.</li><li>Efter installationen visas musikonen i din menyraden.</li><li>När din Philips SPK7858 är ansluten via Bluetooth känner appen igen den och visar batteristatus.</li></ul>' },
+            }
+        },
+        {
+            imgs: ['assets/app3/bluetooth-26.png'],
+            content: {
+                en: { title: 'Bluetooth Permission', text: '<ul><li>When you first launch the app, macOS will ask for Bluetooth permission.</li><li>Click <strong>Allow</strong> to grant access.</li><li>This permission is required to monitor your mouse\'s battery level and connection status.</li></ul>' },
+                tr: { title: 'Bluetooth İzni', text: '<ul><li>Uygulamayı ilk kez açtığınızda macOS Bluetooth izni isteyecektir.</li><li><strong>İzin Ver</strong>\'e tıklayın.</li><li>Bu izin, farenizin pil seviyesini ve bağlantı durumunu izlemek için gereklidir.</li></ul>' },
+                de: { title: 'Bluetooth-Berechtigung', text: '<ul><li>Beim ersten Start der App fragt macOS nach der Bluetooth-Berechtigung.</li><li>Klicken Sie auf <strong>Erlauben</strong>.</li><li>Diese Berechtigung ist erforderlich, um den Akkustand und den Verbindungsstatus der Maus zu überwachen.</li></ul>' },
+                fr: { title: 'Permission Bluetooth', text: '<ul><li>Au premier lancement, macOS demandera la permission Bluetooth.</li><li>Cliquez sur <strong>Autoriser</strong>.</li><li>Cette permission est nécessaire pour surveiller le niveau de batterie et l\'état de connexion de votre souris.</li></ul>' },
+                es: { title: 'Permiso Bluetooth', text: '<ul><li>Al abrir la app por primera vez, macOS pedirá permiso de Bluetooth.</li><li>Haz clic en <strong>Permitir</strong>.</li><li>Este permiso es necesario para monitorear el nivel de batería y el estado de conexión del ratón.</li></ul>' },
+                pt: { title: 'Permissão Bluetooth', text: '<ul><li>Na primeira vez que abrir o app, o macOS solicitará permissão de Bluetooth.</li><li>Clique em <strong>Permitir</strong>.</li><li>Essa permissão é necessária para monitorar o nível de bateria e o status de conexão do mouse.</li></ul>' },
+                it: { title: 'Permesso Bluetooth', text: '<ul><li>Al primo avvio, macOS chiederà il permesso Bluetooth.</li><li>Clicca su <strong>Consenti</strong>.</li><li>Questo permesso è necessario per monitorare il livello della batteria e lo stato di connessione del mouse.</li></ul>' },
+                nl: { title: 'Bluetooth-toestemming', text: '<ul><li>Bij de eerste start vraagt macOS om Bluetooth-toestemming.</li><li>Klik op <strong>Toestaan</strong>.</li><li>Deze toestemming is vereist om het batterijniveau en de verbindingsstatus van de muis te monitoren.</li></ul>' },
+                ru: { title: 'Разрешение Bluetooth', text: '<ul><li>При первом запуске macOS запросит разрешение на использование Bluetooth.</li><li>Нажмите <strong>Разрешить</strong>.</li><li>Это разрешение необходимо для мониторинга уровня заряда батареи и статуса подключения мыши.</li></ul>' },
+                ja: { title: 'Bluetooth許可', text: '<ul><li>初回起動時、macOSがBluetooth許可を求めます。</li><li><strong>許可</strong>をクリックします。</li><li>この許可はマウスのバッテリー残量と接続状態を監視するために必要です。</li></ul>' },
+                ko: { title: 'Bluetooth 권한', text: '<ul><li>앱을 처음 실행하면 macOS에서 Bluetooth 권한을 요청합니다.</li><li><strong>허용</strong>을 클릭합니다.</li><li>이 권한은 마우스의 배터리 수준과 연결 상태를 모니터링하는 데 필요합니다.</li></ul>' },
+                zh: { title: '蓝牙权限', text: '<ul><li>首次启动时，macOS会请求蓝牙权限。</li><li>点击<strong>允许</strong>。</li><li>此权限用于监控鼠标的电池电量和连接状态。</li></ul>' },
+                ar: { title: 'إذن البلوتوث', text: '<ul><li>عند أول تشغيل، سيطلب macOS إذن البلوتوث.</li><li>انقر على <strong>السماح</strong>.</li><li>هذا الإذن مطلوب لمراقبة مستوى البطارية وحالة اتصال الفأرة.</li></ul>' },
+                pl: { title: 'Uprawnienie Bluetooth', text: '<ul><li>Przy pierwszym uruchomieniu macOS poprosi o uprawnienie Bluetooth.</li><li>Kliknij <strong>Zezwól</strong>.</li><li>To uprawnienie jest wymagane do monitorowania poziomu baterii i stanu połączenia myszy.</li></ul>' },
+                sv: { title: 'Bluetooth-behörighet', text: '<ul><li>Vid första start ber macOS om Bluetooth-behörighet.</li><li>Klicka på <strong>Tillåt</strong>.</li><li>Denna behörighet krävs för att övervaka musens batterinivå och anslutningsstatus.</li></ul>' },
+            }
+        },
+        {
+            imgs: ['assets/app3/accesibilityStep2-34.png','assets/app3/accesibilityPlus-36.png','assets/app3/accesibilityApp-38.png','assets/app3/accesibility-40.png','assets/app3/accesibilityFinal-42.png','assets/app3/accesibilityFinish-44.png'],
+            content: {
+                en: { title: 'Accessibility Permission', text: '<ul><li>Go to <strong>System Settings → Privacy & Security → Accessibility</strong>.</li><li>Click the <strong>+</strong> button to add a new app.</li><li>Navigate to Applications, select <strong>MouseKit</strong>, and click Open.</li><li>Enable the toggle next to MouseKit.</li><li>This permission is required for scroll direction control and button remapping.</li></ul>' },
+                tr: { title: 'Erişilebilirlik İzni', text: '<ul><li><strong>Sistem Ayarları → Gizlilik ve Güvenlik → Erişilebilirlik</strong> yolunu takip edin.</li><li><strong>+</strong> butonuna tıklayarak yeni bir uygulama ekleyin.</li><li>Uygulamalar klasörüne gidin, <strong>MouseKit</strong>\'i seçin ve Aç\'a tıklayın.</li><li>MouseKit\'in yanındaki anahtarı etkinleştirin.</li><li>Bu izin, kaydırma yönü kontrolü ve buton atamaları için gereklidir.</li></ul>' },
+                de: { title: 'Bedienungshilfen-Berechtigung', text: '<ul><li>Gehen Sie zu <strong>Systemeinstellungen → Datenschutz & Sicherheit → Bedienungshilfen</strong>.</li><li>Klicken Sie auf <strong>+</strong>, um eine neue App hinzuzufügen.</li><li>Navigieren Sie zu Programme, wählen Sie <strong>MouseKit</strong> und klicken Sie auf Öffnen.</li><li>Aktivieren Sie den Schalter neben MouseKit.</li><li>Diese Berechtigung ist für Scrollrichtungssteuerung und Tastenbelegung erforderlich.</li></ul>' },
+                fr: { title: 'Permission Accessibilité', text: '<ul><li>Allez dans <strong>Réglages Système → Confidentialité et sécurité → Accessibilité</strong>.</li><li>Cliquez sur <strong>+</strong> pour ajouter une nouvelle app.</li><li>Naviguez jusqu\'aux Applications, sélectionnez <strong>MouseKit</strong> et cliquez sur Ouvrir.</li><li>Activez le bouton bascule à côté de MouseKit.</li><li>Cette permission est requise pour le contrôle de la direction de défilement et la réaffectation des boutons.</li></ul>' },
+                es: { title: 'Permiso de Accesibilidad', text: '<ul><li>Ve a <strong>Configuración del Sistema → Privacidad y Seguridad → Accesibilidad</strong>.</li><li>Haz clic en <strong>+</strong> para agregar una nueva app.</li><li>Navega a Aplicaciones, selecciona <strong>MouseKit</strong> y haz clic en Abrir.</li><li>Activa el interruptor junto a MouseKit.</li><li>Este permiso es necesario para el control de la dirección de desplazamiento y la reasignación de botones.</li></ul>' },
+                pt: { title: 'Permissão de Acessibilidade', text: '<ul><li>Vá em <strong>Configurações do Sistema → Privacidade e Segurança → Acessibilidade</strong>.</li><li>Clique no <strong>+</strong> para adicionar um novo app.</li><li>Navegue até Aplicativos, selecione <strong>MouseKit</strong> e clique em Abrir.</li><li>Ative a chave ao lado do MouseKit.</li><li>Esta permissão é necessária para controle de direção de rolagem e remapeamento de botões.</li></ul>' },
+                it: { title: 'Permesso Accessibilità', text: '<ul><li>Vai in <strong>Impostazioni di Sistema → Privacy e Sicurezza → Accessibilità</strong>.</li><li>Clicca su <strong>+</strong> per aggiungere una nuova app.</li><li>Naviga in Applicazioni, seleziona <strong>MouseKit</strong> e clicca su Apri.</li><li>Attiva il toggle accanto a MouseKit.</li><li>Questo permesso è necessario per il controllo della direzione di scorrimento e la rimappatura dei pulsanti.</li></ul>' },
+                nl: { title: 'Toegankelijkheidstoestemming', text: '<ul><li>Ga naar <strong>Systeeminstellingen → Privacy & Beveiliging → Toegankelijkheid</strong>.</li><li>Klik op <strong>+</strong> om een nieuwe app toe te voegen.</li><li>Navigeer naar Programma\'s, selecteer <strong>MouseKit</strong> en klik op Open.</li><li>Schakel de schakelaar naast MouseKit in.</li><li>Deze toestemming is vereist voor scrollrichtingsbediening en knoptoewijzing.</li></ul>' },
+                ru: { title: 'Разрешение на доступ', text: '<ul><li>Перейдите в <strong>Системные настройки → Конфиденциальность и безопасность → Универсальный доступ</strong>.</li><li>Нажмите <strong>+</strong>, чтобы добавить новое приложение.</li><li>Перейдите в Программы, выберите <strong>MouseKit</strong> и нажмите Открыть.</li><li>Включите переключатель рядом с MouseKit.</li><li>Это разрешение необходимо для управления направлением прокрутки и назначения кнопок.</li></ul>' },
+                ja: { title: 'アクセシビリティ許可', text: '<ul><li><strong>システム設定 → プライバシーとセキュリティ → アクセシビリティ</strong>に移動します。</li><li><strong>+</strong>をクリックして新しいアプリを追加します。</li><li>アプリケーションフォルダに移動し、<strong>MouseKit</strong>を選択してOpenをクリックします。</li><li>MouseKitのトグルを有効にします。</li><li>この許可はスクロール方向制御とボタンの割り当てに必要です。</li></ul>' },
+                ko: { title: '손쉬운 사용 권한', text: '<ul><li><strong>시스템 설정 → 개인 정보 보호 및 보안 → 손쉬운 사용</strong>으로 이동합니다.</li><li><strong>+</strong>를 클릭하여 새 앱을 추가합니다.</li><li>응용 프로그램으로 이동하여 <strong>MouseKit</strong>을 선택하고 열기를 클릭합니다.</li><li>MouseKit 옆의 토글을 활성화합니다.</li><li>이 권한은 스크롤 방향 제어 및 버튼 재매핑에 필요합니다.</li></ul>' },
+                zh: { title: '辅助功能权限', text: '<ul><li>前往<strong>系统设置 → 隐私与安全性 → 辅助功能</strong>。</li><li>点击<strong>+</strong>添加新应用。</li><li>导航到应用程序，选择<strong>MouseKit</strong>并点击打开。</li><li>启用MouseKit旁边的开关。</li><li>此权限用于滚动方向控制和按钮重新映射。</li></ul>' },
+                ar: { title: 'إذن إمكانية الوصول', text: '<ul><li>انتقل إلى <strong>إعدادات النظام ← الخصوصية والأمان ← إمكانية الوصول</strong>.</li><li>انقر على <strong>+</strong> لإضافة تطبيق جديد.</li><li>انتقل إلى التطبيقات، اختر <strong>MouseKit</strong> وانقر على فتح.</li><li>قم بتفعيل المفتاح بجانب MouseKit.</li><li>هذا الإذن مطلوب للتحكم في اتجاه التمرير وإعادة تعيين الأزرار.</li></ul>' },
+                pl: { title: 'Uprawnienie Dostępności', text: '<ul><li>Przejdź do <strong>Ustawienia systemowe → Prywatność i bezpieczeństwo → Dostępność</strong>.</li><li>Kliknij <strong>+</strong>, aby dodać nową aplikację.</li><li>Przejdź do Aplikacje, wybierz <strong>MouseKit</strong> i kliknij Otwórz.</li><li>Włącz przełącznik obok MouseKit.</li><li>To uprawnienie jest wymagane do sterowania kierunkiem przewijania i przypisywania przycisków.</li></ul>' },
+                sv: { title: 'Tillgänglighetsbehörighet', text: '<ul><li>Gå till <strong>Systeminställningar → Sekretess och säkerhet → Tillgänglighet</strong>.</li><li>Klicka på <strong>+</strong> för att lägga till en ny app.</li><li>Navigera till Program, välj <strong>MouseKit</strong> och klicka på Öppna.</li><li>Aktivera reglaget bredvid MouseKit.</li><li>Denna behörighet krävs för scrollriktningskontroll och knappomtilldelning.</li></ul>' },
+            }
+        },
+        {
+            imgs: ['assets/app3/loginAppAdd-46.png','assets/app3/loginAppSettings-48.png'],
+            content: {
+                en: { title: 'Launch at Login', text: '<ul><li>Enable the <strong>Launch at Login</strong> toggle in the app to start MouseKit automatically when your Mac boots.</li><li>You can also manage this in <strong>System Settings → General → Login Items</strong>.</li></ul>' },
+                tr: { title: 'Girişte Başlat', text: '<ul><li>Mac\'iniz açıldığında MouseKit\'in otomatik olarak başlaması için uygulamadaki <strong>Girişte Başlat</strong> anahtarını etkinleştirin.</li><li>Bunu ayrıca <strong>Sistem Ayarları → Genel → Giriş Öğeleri</strong> bölümünden de yönetebilirsiniz.</li></ul>' },
+                de: { title: 'Bei Anmeldung starten', text: '<ul><li>Aktivieren Sie den Schalter <strong>Bei Anmeldung starten</strong> in der App, damit MouseKit beim Start des Macs automatisch gestartet wird.</li><li>Dies können Sie auch unter <strong>Systemeinstellungen → Allgemein → Anmeldeobjekte</strong> verwalten.</li></ul>' },
+                fr: { title: 'Démarrage à l\'ouverture de session', text: '<ul><li>Activez le bouton <strong>Démarrage à l\'ouverture de session</strong> pour démarrer MouseKit automatiquement au démarrage de votre Mac.</li><li>Vous pouvez également gérer cela dans <strong>Réglages Système → Général → Éléments d\'ouverture de session</strong>.</li></ul>' },
+                es: { title: 'Iniciar al iniciar sesión', text: '<ul><li>Activa el interruptor <strong>Iniciar al iniciar sesión</strong> para que MouseKit se inicie automáticamente cuando enciendas tu Mac.</li><li>También puedes gestionar esto en <strong>Configuración del Sistema → General → Elementos de inicio de sesión</strong>.</li></ul>' },
+                pt: { title: 'Iniciar no Login', text: '<ul><li>Ative o botão <strong>Iniciar no Login</strong> para que o MouseKit inicie automaticamente quando seu Mac ligar.</li><li>Você também pode gerenciar isso em <strong>Configurações do Sistema → Geral → Itens de Login</strong>.</li></ul>' },
+                it: { title: 'Avvia all\'accesso', text: '<ul><li>Attiva il toggle <strong>Avvia all\'accesso</strong> nell\'app per avviare automaticamente MouseKit all\'avvio del Mac.</li><li>Puoi anche gestirlo in <strong>Impostazioni di Sistema → Generale → Elementi di accesso</strong>.</li></ul>' },
+                nl: { title: 'Starten bij inloggen', text: '<ul><li>Schakel de schakelaar <strong>Starten bij inloggen</strong> in om MouseKit automatisch te starten wanneer je Mac opstart.</li><li>Je kunt dit ook beheren in <strong>Systeeminstellingen → Algemeen → Aanmeldingsitems</strong>.</li></ul>' },
+                ru: { title: 'Автозапуск', text: '<ul><li>Включите переключатель <strong>Автозапуск</strong> в приложении, чтобы MouseKit запускался автоматически при загрузке Mac.</li><li>Вы также можете управлять этим в <strong>Системные настройки → Основные → Объекты входа</strong>.</li></ul>' },
+                ja: { title: 'ログイン時に起動', text: '<ul><li>アプリの<strong>ログイン時に起動</strong>トグルを有効にすると、Macの起動時にMouseKitが自動的に起動します。</li><li><strong>システム設定 → 一般 → ログイン項目</strong>でも管理できます。</li></ul>' },
+                ko: { title: '로그인 시 시작', text: '<ul><li>앱의 <strong>로그인 시 시작</strong> 토글을 활성화하면 Mac이 부팅될 때 MouseKit이 자동으로 시작됩니다.</li><li><strong>시스템 설정 → 일반 → 로그인 항목</strong>에서도 관리할 수 있습니다.</li></ul>' },
+                zh: { title: '登录时启动', text: '<ul><li>启用应用中的<strong>登录时启动</strong>开关，使MouseKit在Mac启动时自动运行。</li><li>您也可以在<strong>系统设置 → 通用 → 登录项目</strong>中管理此设置。</li></ul>' },
+                ar: { title: 'التشغيل عند تسجيل الدخول', text: '<ul><li>قم بتفعيل خيار <strong>التشغيل عند تسجيل الدخول</strong> في التطبيق ليبدأ MouseKit تلقائياً عند تشغيل Mac.</li><li>يمكنك أيضاً إدارة ذلك من <strong>إعدادات النظام ← عام ← عناصر تسجيل الدخول</strong>.</li></ul>' },
+                pl: { title: 'Uruchamianie przy logowaniu', text: '<ul><li>Włącz przełącznik <strong>Uruchamianie przy logowaniu</strong> w aplikacji, aby MouseKit uruchamiał się automatycznie po uruchomieniu Maca.</li><li>Możesz to również zarządzać w <strong>Ustawienia systemowe → Ogólne → Elementy logowania</strong>.</li></ul>' },
+                sv: { title: 'Starta vid inloggning', text: '<ul><li>Aktivera reglaget <strong>Starta vid inloggning</strong> i appen för att starta MouseKit automatiskt när din Mac startar.</li><li>Du kan också hantera detta i <strong>Systeminställningar → Allmänt → Inloggningsobjekt</strong>.</li></ul>' },
+            }
+        },
+        {
+            imgs: ['assets/app3/naturalScroll-50.png'],
+            content: {
+                en: { title: 'Natural Scroll', text: '<ul><li>Toggle <strong>Natural Scroll</strong> to sync your mouse scroll direction with your trackpad.</li><li>When enabled, scrolling behavior matches macOS trackpad natural scroll.</li><li>When disabled, scroll direction is reversed (traditional).</li></ul>' },
+                tr: { title: 'Doğal Kaydırma Yönü', text: '<ul><li><strong>Natural Scroll</strong> anahtarını açarak fare kaydırma yönünüzü trackpad ile senkronize edin.</li><li>Etkinleştirildiğinde, kaydırma davranışı macOS trackpad\'in doğal kaydırmasıyla eşleşir.</li><li>Devre dışı bırakıldığında, kaydırma yönü tersine döner (geleneksel).</li></ul>' },
+                de: { title: 'Natürliches Scrollen', text: '<ul><li>Aktivieren Sie <strong>Natürliches Scrollen</strong>, um die Scrollrichtung der Maus mit dem Trackpad zu synchronisieren.</li><li>Wenn aktiviert, entspricht das Scrollverhalten dem natürlichen Scrollen des macOS-Trackpads.</li><li>Wenn deaktiviert, ist die Scrollrichtung umgekehrt (traditionell).</li></ul>' },
+                fr: { title: 'Défilement naturel', text: '<ul><li>Activez le <strong>Défilement naturel</strong> pour synchroniser la direction de défilement de votre souris avec le trackpad.</li><li>Quand activé, le comportement de défilement correspond au défilement naturel du trackpad macOS.</li><li>Quand désactivé, la direction de défilement est inversée (traditionnel).</li></ul>' },
+                es: { title: 'Desplazamiento natural', text: '<ul><li>Activa el <strong>Desplazamiento natural</strong> para sincronizar la dirección de desplazamiento del ratón con el trackpad.</li><li>Cuando está activado, el comportamiento de desplazamiento coincide con el desplazamiento natural del trackpad de macOS.</li><li>Cuando está desactivado, la dirección se invierte (tradicional).</li></ul>' },
+                pt: { title: 'Rolagem Natural', text: '<ul><li>Ative a <strong>Rolagem Natural</strong> para sincronizar a direção de rolagem do mouse com o trackpad.</li><li>Quando ativada, o comportamento de rolagem corresponde ao trackpad natural do macOS.</li><li>Quando desativada, a direção é invertida (tradicional).</li></ul>' },
+                it: { title: 'Scorrimento naturale', text: '<ul><li>Attiva lo <strong>Scorrimento naturale</strong> per sincronizzare la direzione di scorrimento del mouse con il trackpad.</li><li>Quando abilitato, il comportamento corrisponde allo scorrimento naturale del trackpad macOS.</li><li>Quando disabilitato, la direzione è invertita (tradizionale).</li></ul>' },
+                nl: { title: 'Natuurlijk scrollen', text: '<ul><li>Schakel <strong>Natuurlijk scrollen</strong> in om de scrollrichting van de muis te synchroniseren met het trackpad.</li><li>Ingeschakeld: scrollgedrag komt overeen met het natuurlijk scrollen van het macOS-trackpad.</li><li>Uitgeschakeld: scrollrichting is omgekeerd (traditioneel).</li></ul>' },
+                ru: { title: 'Естественная прокрутка', text: '<ul><li>Включите <strong>Естественную прокрутку</strong>, чтобы синхронизировать направление прокрутки мыши с трекпадом.</li><li>При включении поведение прокрутки соответствует естественной прокрутке трекпада macOS.</li><li>При отключении направление прокрутки инвертируется (традиционное).</li></ul>' },
+                ja: { title: 'ナチュラルスクロール', text: '<ul><li><strong>ナチュラルスクロール</strong>をオンにして、マウスのスクロール方向をトラックパッドと同期します。</li><li>有効時はmacOSトラックパッドのナチュラルスクロールと同じ動作になります。</li><li>無効時はスクロール方向が逆になります（従来型）。</li></ul>' },
+                ko: { title: '자연스러운 스크롤', text: '<ul><li><strong>자연스러운 스크롤</strong>을 켜서 마우스 스크롤 방향을 트랙패드와 동기화합니다.</li><li>활성화 시 macOS 트랙패드의 자연스러운 스크롤과 동일하게 작동합니다.</li><li>비활성화 시 스크롤 방향이 반대로 됩니다 (전통적 방식).</li></ul>' },
+                zh: { title: '自然滚动', text: '<ul><li>开启<strong>自然滚动</strong>，将鼠标滚动方向与触控板同步。</li><li>启用时，滚动行为与macOS触控板的自然滚动一致。</li><li>禁用时，滚动方向相反（传统模式）。</li></ul>' },
+                ar: { title: 'التمرير الطبيعي', text: '<ul><li>قم بتفعيل <strong>التمرير الطبيعي</strong> لمزامنة اتجاه تمرير الفأرة مع لوحة التتبع.</li><li>عند التفعيل، يتطابق سلوك التمرير مع التمرير الطبيعي للوحة التتبع في macOS.</li><li>عند التعطيل، يكون اتجاه التمرير معكوساً (تقليدي).</li></ul>' },
+                pl: { title: 'Naturalne przewijanie', text: '<ul><li>Włącz <strong>Naturalne przewijanie</strong>, aby zsynchronizować kierunek przewijania myszy z gładzikiem.</li><li>Po włączeniu zachowanie przewijania odpowiada naturalnemu przewijaniu gładzikiem macOS.</li><li>Po wyłączeniu kierunek jest odwrócony (tradycyjny).</li></ul>' },
+                sv: { title: 'Naturlig scrollning', text: '<ul><li>Aktivera <strong>Naturlig scrollning</strong> för att synkronisera musens scrollriktning med styrplattan.</li><li>När aktiverat matchar scrollbeteendet macOS styrplattans naturliga scrollning.</li><li>När inaktiverat är scrollriktningen omvänd (traditionell).</li></ul>' },
+            }
+        },
+        {
+            imgs: ['assets/app3/profileA-52.png','assets/app3/ProfileAFinal-54.png','assets/app3/customProfileA-56.png'],
+            content: {
+                en: { title: 'Button Customizations', text: '<ul><li>Click <strong>Customizations</strong> in the app to open the Button Assignments panel.</li><li>Choose from <strong>Profile A</strong>, <strong>Default</strong>, or <strong>Profile B</strong>.</li><li>Click any mouse button on the diagram, then select a keyboard shortcut to assign.</li><li>Each profile stores independent button mappings so you can switch between layouts instantly.</li></ul>' },
+                tr: { title: 'Buton Özelleştirmeleri', text: '<ul><li>Buton atama panelini açmak için uygulamada <strong>Özelleştirmeler</strong>\'e tıklayın.</li><li><strong>Profil A</strong>, <strong>Varsayılan</strong> veya <strong>Profil B</strong>\'den birini seçin.</li><li>Diyagramdaki herhangi bir fare düğmesine tıklayın, ardından atamak istediğiniz klavye kısayolunu seçin.</li><li>Her profil bağımsız buton atamaları saklar; böylece anında düzenler arasında geçiş yapabilirsiniz.</li></ul>' },
+                de: { title: 'Tastenbelegung', text: '<ul><li>Klicken Sie in der App auf <strong>Anpassungen</strong>, um das Panel für Tastenbelegungen zu öffnen.</li><li>Wählen Sie zwischen <strong>Profil A</strong>, <strong>Standard</strong> oder <strong>Profil B</strong>.</li><li>Klicken Sie auf eine beliebige Maustaste im Diagramm und wählen Sie ein Tastaturkürzel.</li><li>Jedes Profil speichert unabhängige Tastenbelegungen für schnellen Wechsel.</li></ul>' },
+                fr: { title: 'Personnalisation des boutons', text: '<ul><li>Cliquez sur <strong>Personnalisations</strong> pour ouvrir le panneau d\'affectation des boutons.</li><li>Choisissez entre <strong>Profil A</strong>, <strong>Défaut</strong> ou <strong>Profil B</strong>.</li><li>Cliquez sur n\'importe quel bouton de la souris dans le diagramme, puis sélectionnez un raccourci clavier.</li><li>Chaque profil stocke des affectations indépendantes pour basculer instantanément.</li></ul>' },
+                es: { title: 'Personalización de botones', text: '<ul><li>Haz clic en <strong>Personalizaciones</strong> para abrir el panel de asignación de botones.</li><li>Elige entre <strong>Perfil A</strong>, <strong>Predeterminado</strong> o <strong>Perfil B</strong>.</li><li>Haz clic en cualquier botón del diagrama y selecciona un atajo de teclado.</li><li>Cada perfil almacena asignaciones independientes para cambiar entre ellas al instante.</li></ul>' },
+                pt: { title: 'Personalização de botões', text: '<ul><li>Clique em <strong>Personalizações</strong> para abrir o painel de atribuição de botões.</li><li>Escolha entre <strong>Perfil A</strong>, <strong>Padrão</strong> ou <strong>Perfil B</strong>.</li><li>Clique em qualquer botão do mouse no diagrama e selecione um atalho de teclado.</li><li>Cada perfil armazena atribuições independentes para alternar entre layouts instantaneamente.</li></ul>' },
+                it: { title: 'Personalizzazione pulsanti', text: '<ul><li>Clicca su <strong>Personalizzazioni</strong> per aprire il pannello di assegnazione pulsanti.</li><li>Scegli tra <strong>Profilo A</strong>, <strong>Predefinito</strong> o <strong>Profilo B</strong>.</li><li>Clicca su qualsiasi pulsante nel diagramma e seleziona una scorciatoia da tastiera.</li><li>Ogni profilo memorizza assegnazioni indipendenti per cambiare layout istantaneamente.</li></ul>' },
+                nl: { title: 'Knoppeninstellingen', text: '<ul><li>Klik op <strong>Aanpassingen</strong> om het knoptoewijzingspaneel te openen.</li><li>Kies tussen <strong>Profiel A</strong>, <strong>Standaard</strong> of <strong>Profiel B</strong>.</li><li>Klik op een muisknop in het diagram en selecteer een sneltoets.</li><li>Elk profiel slaat onafhankelijke toewijzingen op voor direct schakelen.</li></ul>' },
+                ru: { title: 'Настройка кнопок', text: '<ul><li>Нажмите <strong>Настройки</strong> в приложении, чтобы открыть панель назначения кнопок.</li><li>Выберите <strong>Профиль A</strong>, <strong>По умолчанию</strong> или <strong>Профиль B</strong>.</li><li>Нажмите на любую кнопку мыши на схеме и выберите сочетание клавиш.</li><li>Каждый профиль хранит независимые назначения для мгновенного переключения.</li></ul>' },
+                ja: { title: 'ボタンカスタマイズ', text: '<ul><li>アプリの<strong>カスタマイズ</strong>をクリックしてボタン割り当てパネルを開きます。</li><li><strong>プロファイルA</strong>、<strong>デフォルト</strong>、または<strong>プロファイルB</strong>から選択します。</li><li>図のマウスボタンをクリックし、割り当てるキーボードショートカットを選択します。</li><li>各プロファイルは独立したボタン割り当てを保存し、即座に切り替えられます。</li></ul>' },
+                ko: { title: '버튼 사용자 정의', text: '<ul><li>앱의 <strong>사용자 지정</strong>을 클릭하여 버튼 할당 패널을 엽니다.</li><li><strong>프로필 A</strong>, <strong>기본값</strong> 또는 <strong>프로필 B</strong> 중에서 선택합니다.</li><li>다이어그램에서 마우스 버튼을 클릭하고 할당할 키보드 단축키를 선택합니다.</li><li>각 프로필은 독립적인 버튼 매핑을 저장하여 즉시 전환할 수 있습니다.</li></ul>' },
+                zh: { title: '按钮自定义', text: '<ul><li>点击应用中的<strong>自定义</strong>打开按钮分配面板。</li><li>从<strong>配置A</strong>、<strong>默认</strong>或<strong>配置B</strong>中选择。</li><li>点击图中的任意鼠标按钮，然后选择要分配的键盘快捷键。</li><li>每个配置独立存储按钮映射，可即时切换。</li></ul>' },
+                ar: { title: 'تخصيص الأزرار', text: '<ul><li>انقر على <strong>التخصيصات</strong> في التطبيق لفتح لوحة تعيين الأزرار.</li><li>اختر بين <strong>ملف A</strong> أو <strong>افتراضي</strong> أو <strong>ملف B</strong>.</li><li>انقر على أي زر فأرة في الرسم البياني ثم اختر اختصار لوحة المفاتيح.</li><li>كل ملف تعريف يحفظ تعيينات مستقلة للتبديل الفوري.</li></ul>' },
+                pl: { title: 'Personalizacja przycisków', text: '<ul><li>Kliknij <strong>Dostosowania</strong> w aplikacji, aby otworzyć panel przypisywania przycisków.</li><li>Wybierz między <strong>Profilem A</strong>, <strong>Domyślnym</strong> lub <strong>Profilem B</strong>.</li><li>Kliknij dowolny przycisk myszy na schemacie i wybierz skrót klawiszowy.</li><li>Każdy profil przechowuje niezależne przypisania dla natychmiastowego przełączania.</li></ul>' },
+                sv: { title: 'Knappassignering', text: '<ul><li>Klicka på <strong>Anpassningar</strong> för att öppna knappinställningspanelen.</li><li>Välj mellan <strong>Profil A</strong>, <strong>Standard</strong> eller <strong>Profil B</strong>.</li><li>Klicka på valfri musknapp i diagrammet och välj ett tangentbordsgenväg.</li><li>Varje profil lagrar oberoende knapptilldelningar för omedelbar växling.</li></ul>' },
+            }
+        },
+        {
+            imgs: ['assets/app3/notification-58.png','assets/app3/notification2-60.png'],
+            content: {
+                en: { title: 'Battery Notifications', text: '<ul><li>Enable the <strong>Battery Alert</strong> toggle to receive a notification when your mouse battery drops below 10%.</li><li>Allow notification permissions when macOS prompts you.</li><li>This helps you avoid unexpected disconnections during use.</li></ul>' },
+                tr: { title: 'Batarya Bildirimleri', text: '<ul><li>Fare piliniz %10\'un altına düştüğünde bildirim almak için <strong>Pil Bildirimi</strong> anahtarını etkinleştirin.</li><li>macOS size sorduğunda bildirim iznine izin verin.</li><li>Bu, kullanım sırasında beklenmedik bağlantı kesintilerini önlemenize yardımcı olur.</li></ul>' },
+                de: { title: 'Akku-Benachrichtigungen', text: '<ul><li>Aktivieren Sie den Schalter <strong>Akku-Alarm</strong>, um eine Benachrichtigung zu erhalten, wenn der Akku unter 10% fällt.</li><li>Erlauben Sie Benachrichtigungsberechtigungen, wenn macOS Sie dazu auffordert.</li><li>Dies hilft, unerwartete Trennungen während der Nutzung zu vermeiden.</li></ul>' },
+                fr: { title: 'Notifications de batterie', text: '<ul><li>Activez le bouton <strong>Alerte batterie</strong> pour recevoir une notification quand la batterie passe sous 10%.</li><li>Autorisez les permissions de notifications quand macOS vous le demande.</li><li>Cela vous aide à éviter des déconnexions inattendues.</li></ul>' },
+                es: { title: 'Notificaciones de batería', text: '<ul><li>Activa el interruptor <strong>Alerta de batería</strong> para recibir una notificación cuando la batería baje del 10%.</li><li>Permite los permisos de notificaciones cuando macOS te lo solicite.</li><li>Esto te ayuda a evitar desconexiones inesperadas durante el uso.</li></ul>' },
+                pt: { title: 'Notificações de bateria', text: '<ul><li>Ative o botão <strong>Alerta de bateria</strong> para receber uma notificação quando a bateria cair abaixo de 10%.</li><li>Permita as notificações quando o macOS solicitar.</li><li>Isso ajuda a evitar desconexões inesperadas durante o uso.</li></ul>' },
+                it: { title: 'Notifiche batteria', text: '<ul><li>Attiva il toggle <strong>Avviso batteria</strong> per ricevere una notifica quando la batteria scende sotto il 10%.</li><li>Consenti i permessi di notifica quando macOS lo richiede.</li><li>Questo aiuta a evitare disconnessioni inaspettate durante l\'uso.</li></ul>' },
+                nl: { title: 'Batterijmeldingen', text: '<ul><li>Schakel de schakelaar <strong>Batterijwaarschuwing</strong> in om een melding te ontvangen wanneer de batterij onder de 10% komt.</li><li>Sta meldingsrechten toe wanneer macOS hierom vraagt.</li><li>Dit helpt onverwachte verbrekingen tijdens gebruik te voorkomen.</li></ul>' },
+                ru: { title: 'Уведомления о батарее', text: '<ul><li>Включите переключатель <strong>Сигнал батареи</strong>, чтобы получать уведомление, когда заряд падает ниже 10%.</li><li>Разрешите уведомления, когда macOS запросит разрешение.</li><li>Это поможет избежать неожиданных отключений во время работы.</li></ul>' },
+                ja: { title: 'バッテリー通知', text: '<ul><li>バッテリーが10%以下になったときに通知を受け取るには<strong>バッテリーアラート</strong>をオンにします。</li><li>macOSが通知許可を求めた際は許可してください。</li><li>使用中の予期せぬ切断を防ぐのに役立ちます。</li></ul>' },
+                ko: { title: '배터리 알림', text: '<ul><li>배터리가 10% 이하로 떨어질 때 알림을 받으려면 <strong>배터리 경고</strong> 토글을 활성화합니다.</li><li>macOS에서 알림 권한을 요청할 때 허용합니다.</li><li>사용 중 예기치 않은 연결 해제를 방지하는 데 도움이 됩니다.</li></ul>' },
+                zh: { title: '电池通知', text: '<ul><li>启用<strong>电池警报</strong>开关，以便在电池低于10%时收到通知。</li><li>当macOS请求通知权限时请允许。</li><li>这有助于避免使用过程中意外断开连接。</li></ul>' },
+                ar: { title: 'إشعارات البطارية', text: '<ul><li>قم بتفعيل خيار <strong>تنبيه البطارية</strong> لتلقي إشعار عند انخفاض البطارية عن 10%.</li><li>اسمح بأذونات الإشعارات عند طلب macOS.</li><li>يساعد ذلك في تجنب الانقطاعات المفاجئة أثناء الاستخدام.</li></ul>' },
+                pl: { title: 'Powiadomienia o baterii', text: '<ul><li>Włącz przełącznik <strong>Alert baterii</strong>, aby otrzymywać powiadomienie gdy bateria spadnie poniżej 10%.</li><li>Zezwól na powiadomienia gdy macOS o to poprosi.</li><li>Pomaga to uniknąć nieoczekiwanych rozłączeń podczas użytkowania.</li></ul>' },
+                sv: { title: 'Batteriaviseringar', text: '<ul><li>Aktivera reglaget <strong>Batterilarm</strong> för att få en avisering när batteriet sjunker under 10%.</li><li>Tillåt aviseringsbehörigheter när macOS ber om det.</li><li>Detta hjälper dig att undvika oväntade frånkopplingar under användning.</li></ul>' },
+            }
+        },
+        {
+            imgs: ['assets/app3/languages-62.png','assets/app3/Help-64.png'],
+            content: {
+                en: { title: 'Language & Help', text: '<ul><li>Click the <strong>globe icon</strong> at the bottom of the app to change the display language.</li><li>15 languages are supported: Turkish, English, German, French, Spanish, Portuguese, Italian, Dutch, Russian, Japanese, Korean, Chinese, Arabic, Polish, Swedish.</li><li>Click <strong>Help</strong> to access the User Guide, Support, Privacy Policy, and Terms of Use.</li></ul>' },
+                tr: { title: 'Dil ve Yardım', text: '<ul><li>Görüntüleme dilini değiştirmek için uygulamanın altındaki <strong>küre simgesine</strong> tıklayın.</li><li>15 dil desteklenmektedir: Türkçe, İngilizce, Almanca, Fransızca, İspanyolca, Portekizce, İtalyanca, Hollandaca, Rusça, Japonca, Korece, Çince, Arapça, Lehçe, İsveççe.</li><li>Kullanım Kılavuzuna, Desteğe, Gizlilik Politikasına ve Kullanım Koşullarına erişmek için <strong>Yardım</strong>\'a tıklayın.</li></ul>' },
+                de: { title: 'Sprache & Hilfe', text: '<ul><li>Klicken Sie auf das <strong>Globus-Symbol</strong> am unteren Rand der App, um die Anzeigesprache zu ändern.</li><li>15 Sprachen werden unterstützt.</li><li>Klicken Sie auf <strong>Hilfe</strong>, um auf Benutzerhandbuch, Support, Datenschutzrichtlinie und Nutzungsbedingungen zuzugreifen.</li></ul>' },
+                fr: { title: 'Langue & Aide', text: '<ul><li>Cliquez sur l\'<strong>icône globe</strong> en bas de l\'app pour changer la langue d\'affichage.</li><li>15 langues sont prises en charge.</li><li>Cliquez sur <strong>Aide</strong> pour accéder au Guide utilisateur, au Support, à la Politique de confidentialité et aux Conditions d\'utilisation.</li></ul>' },
+                es: { title: 'Idioma y Ayuda', text: '<ul><li>Haz clic en el <strong>icono de globo</strong> en la parte inferior de la app para cambiar el idioma.</li><li>Se admiten 15 idiomas.</li><li>Haz clic en <strong>Ayuda</strong> para acceder a la Guía del usuario, Soporte, Política de privacidad y Términos de uso.</li></ul>' },
+                pt: { title: 'Idioma e Ajuda', text: '<ul><li>Clique no <strong>ícone de globo</strong> na parte inferior do app para alterar o idioma de exibição.</li><li>15 idiomas são suportados.</li><li>Clique em <strong>Ajuda</strong> para acessar o Guia do Usuário, Suporte, Política de Privacidade e Termos de Uso.</li></ul>' },
+                it: { title: 'Lingua & Aiuto', text: '<ul><li>Clicca sull\'<strong>icona globo</strong> in fondo all\'app per cambiare la lingua di visualizzazione.</li><li>Sono supportate 15 lingue.</li><li>Clicca su <strong>Aiuto</strong> per accedere alla Guida utente, Supporto, Informativa sulla privacy e Termini di utilizzo.</li></ul>' },
+                nl: { title: 'Taal & Help', text: '<ul><li>Klik op het <strong>wereldbolpictogram</strong> onderaan de app om de weergavetaal te wijzigen.</li><li>15 talen worden ondersteund.</li><li>Klik op <strong>Help</strong> voor toegang tot de Gebruikershandleiding, Ondersteuning, Privacybeleid en Gebruiksvoorwaarden.</li></ul>' },
+                ru: { title: 'Язык и Помощь', text: '<ul><li>Нажмите на значок <strong>глобуса</strong> внизу приложения, чтобы изменить язык интерфейса.</li><li>Поддерживается 15 языков.</li><li>Нажмите <strong>Помощь</strong> для доступа к руководству пользователя, поддержке, политике конфиденциальности и условиям использования.</li></ul>' },
+                ja: { title: '言語とヘルプ', text: '<ul><li>アプリ下部の<strong>地球アイコン</strong>をクリックして表示言語を変更します。</li><li>15言語がサポートされています。</li><li><strong>ヘルプ</strong>をクリックしてユーザーガイド、サポート、プライバシーポリシー、利用規約にアクセスできます。</li></ul>' },
+                ko: { title: '언어 및 도움말', text: '<ul><li>앱 하단의 <strong>지구 아이콘</strong>을 클릭하여 표시 언어를 변경합니다.</li><li>15개 언어가 지원됩니다.</li><li><strong>도움말</strong>을 클릭하면 사용자 가이드, 지원, 개인정보 처리방침, 이용 약관에 접근할 수 있습니다.</li></ul>' },
+                zh: { title: '语言与帮助', text: '<ul><li>点击应用底部的<strong>地球图标</strong>更改显示语言。</li><li>支持15种语言。</li><li>点击<strong>帮助</strong>访问用户指南、支持、隐私政策和使用条款。</li></ul>' },
+                ar: { title: 'اللغة والمساعدة', text: '<ul><li>انقر على <strong>أيقونة الكرة الأرضية</strong> في أسفل التطبيق لتغيير لغة العرض.</li><li>يتم دعم 15 لغة.</li><li>انقر على <strong>مساعدة</strong> للوصول إلى دليل المستخدم والدعم وسياسة الخصوصية وشروط الاستخدام.</li></ul>' },
+                pl: { title: 'Język i Pomoc', text: '<ul><li>Kliknij <strong>ikonę globusa</strong> na dole aplikacji, aby zmienić język wyświetlania.</li><li>Obsługiwanych jest 15 języków.</li><li>Kliknij <strong>Pomoc</strong>, aby uzyskać dostęp do Przewodnika użytkownika, Wsparcia, Polityki prywatności i Warunków użytkowania.</li></ul>' },
+                sv: { title: 'Språk & Hjälp', text: '<ul><li>Klicka på <strong>globikonen</strong> längst ned i appen för att ändra visningsspråk.</li><li>15 språk stöds.</li><li>Klicka på <strong>Hjälp</strong> för att komma åt Användarguide, Support, Integritetspolicy och Användarvillkor.</li></ul>' },
+            }
+        },
+    ];
+
+    const headingLabels = { en:'Instructions', tr:'Talimatlar', de:'Anleitung', fr:'Instructions', es:'Instrucciones', pt:'Instruções', it:'Istruzioni', nl:'Instructies', ru:'Инструкции', ja:'使い方', ko:'사용 방법', zh:'使用说明', ar:'التعليمات', pl:'Instrukcje', sv:'Instruktioner' };
+
+    let currentLang = 'en';
+
+    function buildAccordion(lang) {
+        const container = document.getElementById('accordion');
+        container.innerHTML = '';
+        sections.forEach((s, i) => {
+            const c = s.content[lang] || s.content['en'];
+            const item = document.createElement('div');
+            item.className = 'accordion-item';
+            const imgs = s.imgs.map(src => `<img src="${src}" loading="lazy">`).join('');
+            item.innerHTML = `
+                <button class="accordion-btn" onclick="toggleItem(this)">
+                    <span class="accordion-btn-left">
+                        <span class="accordion-num">${String(i+1).padStart(2,'0')}</span>
+                        <span class="accordion-label">${c.title}</span>
+                    </span>
+                    <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-text">${c.text}</div>
+                    <div class="accordion-imgs">${imgs}</div>
+                </div>`;
+            container.appendChild(item);
+        });
+    }
+
+    function toggleItem(btn) {
+        const item = btn.closest('.accordion-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.accordion-item.open').forEach(el => el.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+    }
+
+    function setLang(lang) {
+        currentLang = lang;
+        document.getElementById('instr-heading').textContent = headingLabels[lang] || 'Instructions';
+        buildAccordion(lang);
+    }
+
+    buildAccordion('en');
+    </script>
 </body>
 </html>
