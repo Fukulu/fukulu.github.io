@@ -1,6 +1,6 @@
 # 🌟 FoaltyCoder Portfolio
 
-Welcome to the official portfolio website of **FoaltyCoder** — a mobile app developer who designs and builds modern, high-performance applications using **SwiftUI**, **Kotlin**, and **Flutter**.
+Welcome to the official portfolio website of **FoaltyCoder** — BUILDING FAST, SCALABLE, AND SECURE MOBILE APP & WEBSITE
 
 This website showcases my work, design projects, and technical experience across both **native** and **multiplatform** environments.
 
@@ -8,8 +8,8 @@ This website showcases my work, design projects, and technical experience across
 
 ## 🚀 About Me
 
-I'm **Furkan Tümay**, a passionate **Mobile App Developer** with experience delivering production-grade apps for both **iOS** and **Android** platforms.  
-My focus is on clean architecture, UI/UX design, and cross-platform consistency.
+I'm **Furkan Tümay**, a passionate **Mobile App Developer** with experience delivering production-grade apps for both **iOS** and **Android** platforms.
+My focus is on clean architecture, UI/UX design, and cross-platform consistency. 
 
 - 🎯 Native Development with **SwiftUI** and **Kotlin**
 - 🌀 Multiplatform development using **Flutter**
@@ -23,9 +23,8 @@ My focus is on clean architecture, UI/UX design, and cross-platform consistency.
 | Page | Description |
 |------|--------------|
 | `index.html` | Main portfolio landing page — overview and intro |
-| `projects.html` | Collection of mobile apps and design projects |
+| `projects.html` | Collection of mobile apps & web pages |
 | `designs.html` | UI/UX showcases and Figma concepts |
-| `about.html` | Personal information, career background & profile |
 | `support.html` | Contact form for inquiries or technical support |
 | `privacy.html` | Privacy policy for all published applications |
 | `terms.html` | Terms of Use / End User License Agreement |
@@ -44,7 +43,7 @@ My focus is on clean architecture, UI/UX design, and cross-platform consistency.
 
 ## 🖼️ Preview
 
-<img src="assets/FoaltyLogoPNG.png" width="150" alt="FoaltyCoder Logo" />
+<img src="assets/foaltycoderlogo.png" width="150" alt="FoaltyCoder Logo" />
 <br>
 
 Visit the live portfolio at:  
