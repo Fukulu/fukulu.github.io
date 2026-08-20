@@ -14,6 +14,7 @@ My focus is on clean architecture, UI/UX design, and cross-platform consistency.
 - 🎯 Native Development with **SwiftUI** and **Kotlin**
 - 🌀 Multiplatform development using **Flutter**
 - 🎨 UI/UX prototyping on **Figma**
+- 🦴 2D Animation with **Affinity** and **Spine 2D**  
 - 📱 Over **10 published apps** on App Store & Google Play
 
 ---
