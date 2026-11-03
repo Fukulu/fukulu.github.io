@@ -87,10 +87,11 @@
 
         <div class="content">
             <h1>Privacy Policy</h1>
+            <p style="text-align:center;color:#888;margin-top:-25px;margin-bottom:40px;">Last updated: November 3, 2026</p>
 
-            <p><strong>Furkan Tümay (FoaltyCoder)</strong> created all applications on this website and mobile platforms (Apple App Store & Google Play Store) as Ad-Supported or Subscription-based apps. This SERVICE is provided at no cost or via subscription and is intended for use as is. This page informs visitors of our policies regarding the collection, use, and disclosure of Personal Information for all applications published under the <strong>FoaltyCoder</strong> brand.</p>
+            <p><strong>Furkan Tümay (FoaltyCoder)</strong> created all applications on this website and mobile platforms (Apple App Store &amp; Google Play Store) as Ad-Supported or Subscription-based apps. This SERVICE is provided at no cost or via subscription and is intended for use as is. This page informs visitors of our policies regarding the collection, use, and disclosure of Personal Information for all applications published under the <strong>FoaltyCoder</strong> brand.</p>
 
-            <p>By using our Services, you consent to the collection and use of information in accordance with this policy. Personal Information is collected solely to provide and improve the Service and is not shared except as described in this policy.</p>
+            <p>By using our Services, you consent to the collection and use of information in accordance with this policy. Personal Information is collected solely to provide and improve the Service and is not shared except as described in this policy. Not every app uses every service listed here; see Section 3 for app-specific details.</p>
 
             <h2>1. Data Controller Information</h2>
             <p>In accordance with <strong>KVKK (Personal Data Protection Law) Article 10</strong>, the data controller is:</p>
@@ -101,48 +102,91 @@
             </ul>
 
             <h2>2. Information Collection and Use</h2>
-            <p>For a better experience, we may require certain personally identifiable information. This information is processed in two ways:</p>
-            
+            <p>For a better experience, we may require certain personally identifiable information. This information is processed in the following ways:</p>
+
             <h3>A) Locally Stored Data (On-Device)</h3>
-            <p>For our <strong>Budget Planning</strong> tools, the following data is stored locally on your device (e.g., Hive database):</p>
+            <p>Our apps store some data on your device (for example in a Hive database or app preferences), such as settings, favorites, app content and, in <strong>Budget Planner - Kakeibo</strong>:</p>
             <ul>
                 <li>Daily expense records (date, amount, category, notes).</li>
                 <li>Manual income entries.</li>
                 <li>Customization settings (category names and colors).</li>
             </ul>
-            <p>This data remains on your device and is deleted when the app is uninstalled.</p>
+            <p>This data remains on your device unless a feature described in this policy sends it elsewhere, and it is deleted when the app is uninstalled.</p>
 
             <h3>B) Cloud-Synced Data (Server-Side)</h3>
-            <p>Our applications use third-party services to provide cross-device syncing and backup features:</p>
+            <p>Our applications use third-party services to provide accounts, cross-device syncing and backup features:</p>
             <ul>
-                <li><strong>Firebase Authentication:</strong> Email and Unique User ID (UID) for secure access.</li>
-                <li><strong>Firebase Firestore:</strong> Recurring income/expense templates (name, monthly amount) for backup.</li>
+                <li><strong>Firebase Authentication:</strong> Email and Unique User ID (UID) for secure access. Some apps use an anonymous user ID instead of an email address.</li>
+                <li><strong>Firebase Firestore:</strong> Account and app data needed for the features described in Section 3, such as recurring income/expense templates (name, monthly amount) and game or learning progress.</li>
+                <li><strong>Firebase Remote Config, Storage and App Check:</strong> A Firebase installation identifier and app integrity information to deliver app settings and content, and to protect our services from abuse.</li>
             </ul>
 
-            <h2>3. App-Specific Data & Service Nature</h2>
+            <h3>C) AI-Powered Features</h3>
+            <p>Some features use <strong>Google's Gemini models through Firebase AI</strong>. When you choose to use one of these features, the content needed for it is sent to Google for processing and the result is returned to the app:</p>
             <ul>
-                <li><strong>Budget Planning:</strong> Designed for personal finance tracking. Daily transaction details are stored locally, while recurring templates and account info are synced for multi-device support.</li>
-                <li><strong>Local News Browser:</strong> Functions as a private web browser. We do not track or store your browsing history. Favorites are stored locally.</li>
-                <li><strong>Traveler Currency:</strong> Exchange rates are provided via third-party APIs for informational use. We do not guarantee real-time accuracy.</li>
-                <li><strong>Education & Games:</strong> Progress and scores are stored via cloud services to preserve your data across sessions.</li>
+                <li><strong>Budget Planner - Kakeibo:</strong> receipt or bill images and bank or credit card statement PDFs you select, and spending information used to create your monthly report. These documents can contain personal and financial information, so please review them before you send them.</li>
+                <li><strong>Deutsch Master:</strong> the word and sentence you choose to have analyzed, and your target language.</li>
+            </ul>
+            <p>These features run only when you use them. If you do not want this content sent to Google, do not use them.</p>
+
+            <h3>D) Usage Statistics</h3>
+            <p>Our apps may use <strong>Google Analytics for Firebase</strong> to collect usage statistics (such as app opens, session length, app version, device model, operating system and approximate country) so we can improve them.</p>
+
+            <h3>E) Advertising</h3>
+            <p>Some of our apps show ads through <strong>Google AdMob</strong>, which may collect your device's advertising identifier, IP address and device information to deliver, measure and, with your consent, personalize ads. On iOS, these apps ask for your permission to track (App Tracking Transparency). If you decline, ads may still be shown but are not personalized.</p>
+
+            <h2>3. App-Specific Data &amp; Service Nature</h2>
+            <ul>
+                <li><strong>Budget Planner - Kakeibo:</strong> Designed for personal finance tracking. Daily transaction details are stored locally, while recurring templates and account info are synced for multi-device support. Optional AI features are described in Section 2-C.</li>
+                <li><strong>Local News Browser:</strong> A specialized news browser that filters news by region and keyword. See the detailed section below.</li>
+                <li><strong>Deutsch Master:</strong> A German learning app. Your account, learning progress and streaks are stored via cloud services to preserve them across sessions. It uses ads (Section 2-E), in-app purchases through RevenueCat, usage statistics, crash reporting and optional AI analysis (Section 2-C).</li>
+                <li><strong>Word Lama:</strong> A word puzzle game. Game progress and scores are stored via cloud services to preserve your data across sessions. It uses Apple Game Center where available, in-app purchases through RevenueCat, usage statistics and diagnostics.</li>
+                <li><strong>MouseKit for Philips SPK7858:</strong> This macOS app has <a href="mousekitforphilips/privacy.html">its own privacy policy</a>.</li>
+                <li><strong>Kapital Trade Tycoon:</strong> A business simulation game. See the detailed section below.</li>
             </ul>
 
-            <h2>4. Legal Basis for Processing (KVKK & GDPR)</h2>
+            <h3>Local News Browser</h3>
+            <p>Local News Browser finds news by region and keyword. Headlines come from Google News RSS feeds, and main images are read from the publisher's web page. Opening a story takes you to the publisher's original website, shown in the app's browser. News content belongs to its publishers, who are responsible for it.</p>
+            <ul>
+                <li><strong>News requests:</strong> your device connects directly to Google News and to publisher websites. They can receive your IP address, device and browser information and the region or keyword you search for. Websites you open may use cookies and trackers under their own privacy policies.</li>
+                <li><strong>Reader Mode (optional):</strong> when you turn it on, the app retrieves the article from the publisher's website and shows its text in a simplified view.</li>
+                <li><strong>AI summaries:</strong> the AI tab shows daily news summaries stored in our cloud database. They may contain errors, so please check the original sources.</li>
+                <li><strong>On-device data:</strong> favorites and app settings are stored on your device. We do not store your browsing history.</li>
+                <li><strong>Anonymous account:</strong> the app creates an anonymous user ID without asking for your email and stores your country code, language, account creation time and last login time in Firebase Firestore.</li>
+                <li><strong>Usage statistics and purchases:</strong> Google Analytics for Firebase may receive which app sections you open and your general daily reading level, not the articles you read. Subscriptions are processed by Apple or Google and managed through RevenueCat.</li>
+            </ul>
+
+            <h3>Kapital Trade Tycoon</h3>
+            <p>Kapital Trade Tycoon requires an account so that your progress is saved and can be continued on any device. We collect and use the following data:</p>
+            <ul>
+                <li><strong>Account data:</strong> your email address, the username you choose and a unique user ID (Firebase Authentication). Your password is handled by Firebase and is never visible to us.</li>
+                <li><strong>Game data:</strong> your progress (Kapital Money, Kapital Coin, level, XP, businesses, experts, stock, warehouses, resources, sales, tasks, scratch tickets, purchase transaction IDs and timers), stored in Firebase Firestore so it is not lost and can be synced across devices. A server timestamp is also stored to keep game timers fair.</li>
+                <li><strong>Public leaderboard:</strong> your <strong>username</strong>, Kapital Money balance and level are shown to other players on the daily world leaderboard. Your email address is never shown to other players. Please do not use your real name or personal information as your username.</li>
+                <li><strong>On-device data:</strong> a copy of your game progress, the daily market prices, the latest leaderboard and your settings (such as notifications) are stored on your device so the game works offline. Sale reminders are scheduled as local notifications on your device only if you turn notifications on.</li>
+                <li><strong>Advertising (optional):</strong> rewarded ads are shown only when you tap <strong>WATCH</strong> in the store. They are provided by Google AdMob, as described in Section 2-E. If you are in the European Economic Area, the United Kingdom or Switzerland, we ask for your consent through Google's consent form before any ad is requested, and you can change your choice anytime in <strong>Settings &rarr; Ad Privacy</strong>. The app does not request ads or show any permission prompt until you choose to watch an ad.</li>
+                <li><strong>Purchases (optional):</strong> Kapital Coin packs and the Kapital Premium subscription are processed by Apple or Google. Our payment provider RevenueCat receives your purchase history and subscription status linked to your user ID, so that your coins and Premium benefits can be delivered and restored. We never receive your payment card or billing details.</li>
+                <li><strong>Game configuration:</strong> Firebase Remote Config uses a Firebase installation identifier to deliver game settings and events.</li>
+                <li><strong>Usage statistics:</strong> Google Analytics for Firebase collects usage statistics (such as app opens, session length, app version, device model, operating system and approximate country) so we can see how many people play and improve the game. It is not used by us for ad personalization.</li>
+            </ul>
+            <p>We do not sell your personal data, and we do not use it for any purpose other than running the game, showing optional ads and delivering purchases.</p>
+            <p><strong>Retention and deletion:</strong> your data is kept while your account exists. You can permanently delete your account and all game progress at any time in the app (<strong>Settings &rarr; Delete Account</strong>) without contacting us. Your username disappears from the public leaderboard at its next daily update. Purchase records held by Apple, Google and RevenueCat for billing, tax and restore purposes may remain under their own policies; to request removal of your RevenueCat record, contact us. Deleting your account does not cancel a subscription.</p>
+
+            <h2>4. Legal Basis for Processing (KVKK &amp; GDPR)</h2>
             <p>We process data based on the following legal grounds:</p>
             <ul>
                 <li><strong>Contractual Necessity:</strong> To provide the core features of the app.</li>
-                <li><strong>Explicit Consent:</strong> For backup services and identity verification where applicable.</li>
-                <li><strong>Legitimate Interest:</strong> For app security and crash reporting.</li>
+                <li><strong>Explicit Consent:</strong> For backup services, AI-powered features, personalized advertising and identity verification where applicable.</li>
+                <li><strong>Legitimate Interest:</strong> For app security, usage statistics and crash reporting.</li>
             </ul>
 
-            <h2>5. Third-Party Services & Data Transfer</h2>
-            <p>Our apps interact with the following providers. Please note that <strong>Firebase</strong> servers are located in the <strong>United States</strong>. We ensure data safety through <strong>Standard Contractual Clauses (SCC)</strong>.</p>
+            <h2>5. Third-Party Services &amp; Data Transfer</h2>
+            <p>Our apps interact with the following providers. Please note that <strong>Firebase</strong> and Google services may process data in the <strong>United States</strong> and the <strong>European Union</strong> (Kapital Trade Tycoon's game database is located in Belgium, europe-west1). We ensure data safety through <strong>Standard Contractual Clauses (SCC)</strong>.</p>
             <ul>
-                <li><a href="https://policies.google.com/privacy">AdMob & Google Analytics</a></li>
+                <li><a href="https://policies.google.com/privacy">AdMob &amp; Google Analytics</a></li>
+                <li><a href="https://policies.google.com/privacy">Google News</a> (news headlines in Local News Browser)</li>
                 <li><a href="https://www.revenuecat.com/privacy">RevenueCat</a> (Subscription Management)</li>
-                <li><a href="https://www.mongodb.com/legal/privacy-policy">MongoDB</a></li>
-                <li><a href="https://firebase.google.com/support/privacy">Firebase</a> (Authentication & Cloud Database)</li>
-                <li><a href="https://apple.com/legal/privacy">Apple App Store</a> / <a href="https://play.google.com/about/play-terms/">Google Play Store</a></li>
+                <li><a href="https://firebase.google.com/support/privacy">Firebase</a> (Authentication, Cloud Database, Storage, Remote Config, App Check, Cloud Functions, Crashlytics and Firebase AI with Google Gemini)</li>
+                <li><a href="https://apple.com/legal/privacy">Apple App Store and Game Center</a> / <a href="https://play.google.com/about/play-terms/">Google Play Store</a></li>
             </ul>
 
             <h2>6. User Rights</h2>
@@ -151,18 +195,19 @@
                 <li>Right to access, correct, or delete your personal data.</li>
                 <li>Right to object to data processing or request portability.</li>
                 <li><strong>Account Deletion:</strong> You can delete your account and all associated cloud data permanently within the app settings.</li>
+                <li><strong>Advertising Choices:</strong> You can change your ad consent in the app (where available), reset or limit your advertising identifier in your device settings, and turn off tracking on iOS in Settings &rarr; Privacy &amp; Security &rarr; Tracking.</li>
             </ul>
 
             <h2>7. Security</h2>
             <p>We utilize <strong>TLS/SSL encryption</strong> for all data transmissions to cloud services. While we use commercially acceptable means to protect your information, no method of electronic storage is 100% secure.</p>
 
             <h2>8. Payments and Subscriptions</h2>
-            <p>All transactions are handled by Apple or Google. We do not collect or store your financial, credit card, or billing information. We only receive a technical confirmation to unlock features.</p>
+            <p>All transactions are handled by Apple or Google. We do not collect or store your financial, credit card, or billing information. We only receive a technical confirmation to unlock features. Subscriptions renew automatically until cancelled in your App Store or Google Play account settings; deleting your account does not cancel a subscription.</p>
 
             <h2>9. Log Data</h2>
-            <p>In case of an error, Log Data (IP address, device name, OS version) may be collected through <strong>Firebase Crashlytics</strong> to help us fix the issue.</p>
+            <p>In case of an error, Log Data (IP address, device name, OS version) may be collected through <strong>Firebase Crashlytics</strong> or stored as app error reports to help us fix the issue.</p>
 
-            <h2>10. Children’s Privacy</h2>
+            <h2>10. Children's Privacy</h2>
             <p>These Services do not knowingly address anyone under 13. If we discover a child under 13 has provided personal data, we delete it immediately from our servers.</p>
 
             <h2>11. Applicable Law</h2>
